@@ -1,0 +1,37 @@
+<!DOCTYPE html>
+<html>
+    <head>
+        <title>forms</title>
+    </head>
+    <body>
+        <form action="http://www.baidu.com">
+            <fieldset>
+                <legend>信息</legend>
+                姓名：<input type="text" name="lastname" value="wang" size="30" maxlength="50" readonly="readonly">
+                密码：<input type="password" required="required">
+                <input type="number" max="500" min="20" step=10 required="required">
+                <input type="checkbox" checked="checked">
+                <input type="radio" name="ds" id="ds">
+                <input type="radio" name="ds" id="ds">
+                <input type="reset">
+                <input type="hidden">
+                <select readonly="readonly">
+                    <option>App
+                    <option>Pc
+                    <option selected>Bc
+                </select>
+                <textarea name="COmment" rows="1" cols="10" placeholder="sss"></textarea>
+                <input type="submit" value="提交">
+            </fieldset>
+
+        </form>
+        <from>
+            <label for="male">Male</label>
+            <input type="radio" name="sex" id="male" checked="checked">
+            <br/>
+            <label for="female">Female</label>
+            <input type="radio" name="sex" id="female" disabled="disabled" align="right">
+        </from>
+    </body>
+
+</html> 

@@ -1,0 +1,38 @@
+<html>
+    <head>
+        <title>表单</title>
+    </head>
+    <body>
+        <form action="action_page.php" method="GET">
+            <fieldset>
+                <legend>个人信息</legend>
+                first name:<input type="text" name="firstname" value="wang" disabled="true"><br/>
+                last name:<input type="text" name="lastname" readonly="true"><br/>
+                sex: <input type="radio" name="sex" value="male" checked>male
+                     <input type="radio" name="sex" value="female">Female <br/>
+                爱好：<select name="cars">
+                      <option value="drop">Drop</option>
+                      <option value="Up">Up</option>
+                      <option value="check">Check</option>
+                      <option value="list" selected>List</option>
+                </select><br/>
+                简介：<textarea name="message" rows="10" cols="10">
+                    the iis 
+                </textarea><br/>
+                <input type="number" name="que" min="1" max="5" step="2"><br>
+                <input type="date" name="bday" min="2019-05-31">
+                <input type="checkbox" name="ve" value="bick"> 好 <br>
+                <input type="checkbox" name="ve" value="bnick"> 不好 <br>
+                <input type="submit"  value="submit"> <br>
+                <input list="browsers" name="browser"><br>
+                <datalist id="browsers">
+                    <option value="drop">
+                    <option value="Up">
+                    <option value="check">
+                    <option value="list" selected>
+                </datalist>
+                <button type="button" onclick="alert('hello')">hello</button>
+            </fieldset>
+        </form>
+    </body>
+</html>

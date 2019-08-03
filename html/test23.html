@@ -1,0 +1,26 @@
+<!DOCTYPE html>
+<html>
+    <head>
+        <script>
+            function clickCounter() {
+              if (typeof(Storage) !== "undefinesd") {
+                  if (localStorage.clickcount) {
+                    localStorage.clickcount = Number(localStorage.clickcount) + 1;
+                } else {
+                    localStorage.clickcount =1;
+                }
+                localStorage.name = "wanglong";
+                document.getElementById("result").innerHTML = 
+                "你已经点击了" + localStorage.clickcount + "次";
+              } else {
+                document.getElementById("result").innerHTML = "抱歉！近得多浏览器不支持web Storage"
+             }
+            }
+         </script>
+    </head>
+    <body>
+        <div id="result"> </div>
+        <p><button onclick="clickCounter()" type="button">点这里</button></p>
+        
+    </body>
+</html>

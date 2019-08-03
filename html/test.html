@@ -1,0 +1,91 @@
+<html>
+    <body style="background-color: white">
+        <h1 style="text-align:center">first h</h1><hr/>
+        <p>first p</p><hr/>
+        <p style="font-family:verdana;color:blue; font-size:20px">ser p</p><hr/>
+        <!-- 百度地址-->
+        <a title="百度"; href="http://www.baidu.com"">百度</a><br/>
+        <br/>
+        <br/>
+        <img src="../image/1.jpg";width="320";height="250"/>
+        <table border="5"></table>
+
+        <!-- 文本格式化-->
+
+            <!--文本格式化标签-->
+            <div style="font-size:35px;">
+                <b>粗体文字</b>
+                <big>大号字</big>
+                <em>着重文字</em>
+                <i>斜体文字</i>
+                <small>小写字号</small>
+                <strong>加重语气</strong>
+                <sub>下标字</sub>
+                <sup>上标字</sup>
+                <ins>插入字</ins>
+                <del>删除字</del>
+            </div>
+
+            <!--计算机输出标签-->
+            <div style="font-family:verana; font-size:20px">
+                <code>计算机编码</code>
+                <kbd>键盘码</kbd>
+                <samp>计算机代码样式</samp>
+                <tt>打字机代码</tt>
+                <var>变量</var>
+                <pre>预格式文本</pre>
+            </div>
+
+            <!--引用和术语定义 -->
+            <abbrr>Family</addr>
+            <acronym>JMP</acronym>
+            <!--斜体显示 元素前后行换行-->
+            <address>上海普陀..</address>
+            <!--双向重写 元素定义双向流覆盖-->
+            <bdo>文字方向双向流覆盖</bdo>
+            <blockquote>长的引用</blockquote>
+            <q>短的引用语</q>
+            <!--定义著作的标题 斜体显示-->
+            <cite>The Family(定义著作的标题)</cite>
+            <dfn>项目名</dfn>
+
+                <!--q 短的引用: 包围引号 -->
+                <p>wwf来自：<q>火星</q></p>
+
+                <!--blockquote长的引用：缩进处理-->
+                <P>以下来自陋室铭</P>
+                <blockquote cite="http://www.worldwildlife.org/who/index.html">
+                山不在高 有仙则名
+                水不在深 有龙则灵
+                斯是陋室 惟吾德馨
+                </blockquote>
+
+                <!--abbr 缩略词：缩写或首字母缩写，
+                    （title属性为全局属性，规定了关于元素的额外信息，鼠标移动到会显示提示文本；
+                      title常与from和a一同使用，提示输入格式和连接目标信息。abbr和acronym元素的必须属性）
+                -->
+                <p>
+                    <abbr title="World Health Orin">WHO</abbr>
+                    成立于1984
+                </p>
+
+                <!--dfn 定义项目或缩写-->
+                    <!--1.dfn设置了title属性，定义项目-->
+                    <p>
+                        <dfn title="World Health Organization">WHO</dfn>
+                        1984成立
+                    </p>
+                    <!--2.dfn元素包含标题的abbr，则title定义项目-->
+                    <p>
+                        <dfn>
+                            <abbr title="World Health Organization">WHO</abbr>
+                        </dfn>
+                        1984成立
+                    </p>
+                    <!--3.否则 dfn文本即是项目 并且父元素包含定义-->
+                    <p>The
+                        <dfn>WHO</dfn> World Health Organization1984成立
+                    </p>
+
+    </body>
+</html>

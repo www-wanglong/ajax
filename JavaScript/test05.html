@@ -1,0 +1,40 @@
+<!DOCTYPE html>
+<html>
+  <head>
+    <script>
+      function validateFrom() {
+        var name = document.forms["myForm"]["fname"].value;
+        console.log(name)
+        if (name == "") {
+          alert("必须填写姓名");
+          return false;
+        }
+      }
+      function validateNumber() {
+        var number,errorMeaage;
+        number = document.getElementById("numb").value;
+        if (isNaN(number) || number < 1 || number > 10 ) {
+          errorMeaage = "输入无效"
+        } else {
+          errorMeaage = "输入有效"
+        }
+        document.getElementById("message").innerHTML = errorMeaage;
+    
+      }
+
+    </script>
+  </head>
+  <body>
+    <form name="myForm" action="http://www.baidu.com" onsubmit="return validateFrom()" method="post">
+      姓名：<input type="text" name="fname">
+            <input type="submit" value="提交">
+    </form>
+
+    <form name="myForm1" action="http://www.baidu.com" method="post">
+      <p id="message"></p>
+      数字（大于1，小于10）：<input id="numb"> 
+      <input type="number" max=10 min=1>
+      <input type="button" onclick="validateNumber()" value="提交">
+    </form>
+  </body>
+</html>

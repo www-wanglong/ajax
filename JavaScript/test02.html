@@ -1,0 +1,16 @@
+<!DOCTYPE html>
+<html>
+    <head></head>
+    <body>
+        <h1>try use js innnerHTML属性</h1>
+        <p id="demo"></p>
+
+        <p>document.write会删除所有已有的元素</p>
+        <button onclick="document.write(4)">try</button>
+        <script>
+          document.getElementById("demo").innerHTML = 5+6
+          document.write(5+8)
+          window.alert("警告非法网页")
+        </script>
+    </body>
+</html>

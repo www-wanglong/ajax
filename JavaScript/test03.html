@@ -1,0 +1,43 @@
+<!DOCTYPE html>
+<html>
+    <head>
+      <!-- 
+          如果不需要已载入网页就执行的脚本 可以放在head部分 当某事件被触发时 在调用相应的js脚本 
+          把脚本置于<body> 元素的底部，可改善显示速度，因为脚本编译会拖慢显示
+      -->
+
+      <script>
+         
+      </script>
+    </head>
+    <body>
+      <p>java script 语法</p>
+      <p id="demo"></p>
+      <p id="demo1"></p>
+      <p id="demo2"></p>
+      <p id="demo3"></p>
+      <script>
+        // js脚本放在页面底部 脚本在下载的时，浏览器不会启动任何其他下载。 此外所有的解析和渲染活动都可能会被阻塞。
+        var x = 21,y = 10,z;
+        x += 5;
+        y = 15;
+        // 如果把要给的数值引入引号中 其余数值会被视作字符串并被级联
+        //document.getElementById("demo").innerHTML = "求和function: " + typeof add()  + ", number:" + typeof add;
+        // 局部变量实例==示例
+        // function add(a,b) {
+        //    return a+b;
+        //  } 
+         
+         document.getElementById('demo1').innerHTML = typeof sname + "," + name;
+         // 局部变量
+         test()
+         function test() {
+           var sname = 'wang';
+           document.getElementById('demo2').innerHTML = typeof sname + "," + name;
+         }
+         document.getElementById('demo3').innerHTML = typeof sname + "," + name;
+      </script>
+
+      
+    </body>
+</html>

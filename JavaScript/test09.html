@@ -1,0 +1,20 @@
+<!DOCTYPE html>
+<html>
+  <head>
+    <script>
+      function checkCookies() {
+        var text = "";
+        if (navigator.cookieEnabled) {
+          text = "以启用"
+        } else {
+          text = "未启用";
+        }
+        document.getElementById("demo").innerHTML = text;
+      }
+    </script>
+  </head>
+  <body onload="checkCookies()">
+    <button id="myBtn">try</button>
+    <p id = "demo"></p>
+  </body>
+</html>
