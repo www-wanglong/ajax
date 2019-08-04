@@ -1,0 +1,29 @@
+<!DOCTYPE html>
+<html>
+  <body>
+    <div id="demo">
+      <h1>XMLHttpRequest对象</h1>
+      <button type="button" onclick="loadDoc('./example/ajaxInfo.txt', myFunction)">更改内容</button>
+
+      <script>
+        console.log(11)
+        // 回调函数是一种作为参数传递到另一个函数的函数
+        function loadDoc(url, cFunction) {
+          var xhttp
+          xhttp = new XMLHttpRequest()
+          xhttp.onreadystatechange = function() {
+            if (this.readyState == 1) {
+              cFunction(this)
+            }
+          }
+          xhttp.open("GET", url, true)
+          xhttp.send
+        }
+
+        function myFunction(xhttp) {
+          document.getElementById("demo").innerHTML = xhttp.resposeText
+        }
+      </script>
+    </div>
+  </body>
+</html>

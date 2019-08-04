@@ -5,13 +5,28 @@
     <script>
       $(document).ready(function() {
         $("button").click(function() {
-          $("div").animate({left:"205px"})
+          var div = $('div')
+
+          div.animate({
+            // left: "205px",
+            // width: "+=150px",
+            // height: "+=150px",
+            // opacity: "0.5" 
+            // 使用预定义的值
+            // height: 'toggle'
+         })
+         // jquery提供了针对动画的队列功能
+         div.animate({height: '200px',opacity:'0.4'},"slow")
+         div.animate({height: '100px',opacity:'0.8'},"slow")
+         div.animate({height: '200px',opacity:'0.4'},"slow")
+         div.animate({height: '100px',opacity:'0.8'},"slow")
         })
       })
     </script>
   </head>
   <body>
     <button>开始动画</button>
+     <!-- 默认的 所有html元素都有一个静态位置 且无法移动 -->
     <div style="background-color: green; height:100px;width:100px;position:absolute;"></div>
   </body>
 </html>
