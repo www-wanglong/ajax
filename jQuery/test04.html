@@ -1,0 +1,44 @@
+<!DOCTYPE html>
+<html>
+  <head>
+    <script type="text/javascript" src="jquery-3.4.1.js"></script>
+    <script>
+      $(document).ready(function() {
+        $('#flip').click(function() {
+          // callback函数在动画完成100%后执行
+          $('#panel').slideDown(5000, function() {
+            alert("The paragraph is now hidden")
+          })
+        })
+        $('#stop').click(function() {
+          $('#panel').stop()
+        })
+        // jquery允许动作/方法连接起来
+        $('#chain').click(function() {
+          $('#p1').css("color","red")
+          .slideUp(2000)
+          .slideDown(2000)
+        })
+      })    
+    </script>
+    <style type="text/css">
+      #panel,#flip {
+        padding: 5px;
+        text-align: center;
+        background-color: #e0e0e0;
+        border: 1px solid #c3c3c3;
+      }
+      #panel {
+        padding: 50px;
+        display: none;
+      }
+    </style>
+  </head>
+  <body>
+    <button id="stop">停止动画</button>
+    <div id="flip">点击这里 向下滑动面板</div>
+    <div id="panel">hello world!</div>
+    <button id="chain">惊喜</button>
+    <p id="p1">jQeury 乐趣十足</p>
+  </body>
+</html>
