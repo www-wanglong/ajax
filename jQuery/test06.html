@@ -1,0 +1,58 @@
+<!DOCTYPE html>
+<html>
+  <head>
+    <script type="text/javascript" src="jquery-3.4.1.js"></script>
+    <script>
+      $(document).ready(function() {
+        var text = "<b>Prepend text</b>"
+        var text1 = "<b>Prepend text1</b>"
+        $("#btn1").click(function() {
+          $("p").prepend(text,text1)
+        })
+        
+        $("#btn2").click(function() {
+          // 在元素的开头插入内容
+          $("ol").prepend("<li>Prepend item</li>. ")
+          // 在元素的结尾插入内容
+          $("ol").append("<li>append item</li>. ")
+        })
+
+        $("#btn3").click(function() {
+          $("img").before("<b>Before</b>")
+        })
+
+        $("#btn4").click(function() {
+          $("img").after("<b>After</b>")
+        })
+
+        $("#btn5").click(function() {
+          $("#div1").remove()
+        })
+
+        $("#btn6").click(function() {
+          $("#div1").empty()
+        })
+      })
+    </script>
+  </head>
+  <body>
+    <p>this is a paragrah</p>
+    <ol>
+      <li>list item 1</li>
+    </ol>
+
+    <button id="btn1">添加文本</button>
+    <button id="btn2">添加列表项</button></br>
+
+    <img src="../image/1.jpg"></br>
+    <button id="btn3">在元素之前</button>
+    <button id="btn4">在元素之后</button>
+
+    <div id="div1" style="height:200px;width:200px;background-color: blue;border:1px solid #e0e0e0">
+      <p>this is a paragrap in the div</p>
+      <p id="p2">this is a paragrap2 in the div</p>
+    </div>
+    <button id="btn5">删除元素</button>
+    <button id="btn6">删除子元素</button>
+  </body>
+</html>
