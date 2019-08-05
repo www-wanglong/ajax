@@ -4,11 +4,32 @@
     <script type="text/javascript" src="jquery-3.4.1.js"></script>
     <script>
       $(document).ready(function() {
+        // 返回文本内容
         $("#btn1").click(function() {
           alert("Text: " + $("#test").text())
         })
+        // 返回所选元素的内容 包括html
         $("#btn2").click(function() {
           alert("HTML: " + $("#test").html())
+        })
+        // 获取属性 attr() 设置值
+        $("#btn3").click(function() {
+          //alert("Value: " + $("#test1").val())
+          $("#test1").val("华山")
+        })
+        // 回调函数 两个参数：被选中当前元素的下标以及原始值。 返回使用的字符串
+        $("#btn4").click(function() {
+          $("#test2").html(function(i,origText) {
+            return "Old html: " + origText + "New Text:<b>Hello</b> (index: " + i + ")"
+          })
+        })
+ 
+        // attr() 方法用来设置/改变属性值
+        $("#btn5").click(function() {
+          $("#a1").attr({
+            "href": "www.wanglong.com",
+            "title": "www专属"
+          })
         })
       })
     </script>  
@@ -17,5 +38,11 @@
     <p id="test">这是段落中<b>粗体</b>文本</p>
     <button id="btn1">显示文本</button>
     <button id="btn2">显示HTML</button>
+    <p>姓名:<input type="text" id="test1" value="一道桥"></p>
+    <button id="btn3">显示输入框的值</button>
+    <p id="test2">回调</p>
+    <button id="btn4">回调函数演示</button>
+    <a href="www.baudu.com" id="a1">百度</a></br>
+    <button id="btn5">attr方法改变属性</button>
   </body>
 </html>
