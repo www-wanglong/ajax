@@ -1,0 +1,27 @@
+<!DOCTYPE html>
+<html>
+  <head>
+    <script type="text/javascript" src="jquery-3.4.1.js"></script>
+    <script>
+      $(document).ready(function() {
+        $("span").parents("ul").css({"color":"red","border":"2px solid red"})
+      })
+    </script>
+  </head>
+  <body>
+    <div class="ancestors">
+      <div style="width: 500px">div
+        <ul>ul
+          <li>li
+            <span>span</span>
+          </li>
+        </ul>
+      </div>
+      <div>
+        <p>
+          <span>span</span>
+        </p>
+      </div>
+    </div>
+  </body>
+</html>
