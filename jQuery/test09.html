@@ -1,0 +1,27 @@
+<!DOCTYPE html>
+<html>
+  <head>
+    <script type="text/javascript" src="jquery-3.4.1.js"></script>
+    <script>
+      $(document).ready(function() {
+        $("button").click(function() {
+          // $("#test").load("./demo.text", function(responseTxt, statusTxt,xhr) {
+          //   if(statusTxt == "success") {
+          //     alert("外部内容加载成功！")
+          //   }
+          //   if(statusTxt == "error") {
+          //     alert("Error: "+xhr.status+": "+xhr.statusText)
+          //   }
+          // })
+          $.get("./demo.asp",function(data, status) {
+            alert("数据：" + data + "\n状态：" + status)
+          })
+        })
+      })
+    </script>
+  </head>
+  <body>
+    <h3 id="test">通过ajax请求来改变该文本</h3>
+    <button>获取外部内容</button>
+  </body>
+</html>
