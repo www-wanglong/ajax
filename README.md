@@ -8,3 +8,6 @@
 ### 4.div和span区别
     div块级元素
     span行内元素(宽高无法通过css设置)
+### 5.a打开新的窗口
+    target="_blank"
+    base标签设置整体链接的打开方式
