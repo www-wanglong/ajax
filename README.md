@@ -11,3 +11,7 @@
 ### 5.a打开新的窗口
     target="_blank"
     base标签设置整体链接的打开方式
+### 6.table 的cellspacing属性是干嘛用的
+    规定单元边沿与其内容之间的空白
+### 7.格单元格怎么合并的
+    td的rowspan and colspan
