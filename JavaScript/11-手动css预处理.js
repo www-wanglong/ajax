@@ -49,7 +49,7 @@
 //    把AST拿过来做一些修改
 // 代码生成
 
-// 词法分析：源码分为变量、变量值、选择器、属性、属性值
+// 1. 词法分析：源码分为变量、变量值、选择器、属性、属性值
 // 确定令牌的结构
 {
   type: "variableDef" | "variableRef" | "selector" | "property" | "value" //
@@ -63,26 +63,90 @@
 // property: 以字母开头
 // value: 非改行行的第一个字符串
 function tokenize(text) {
-  let texts = text.trim().split(/\n|\r\n/)
-  let tokens = []
-  texts.forEach( (token) => {
-    let spaces = token.match(/^\s+/) || ['']
-    let indent = spaces[0].length
-    let line = token.trim()
-    let words = line.split(/\s/)
-    if (words.length === 1) {
-      tokens.push(
-        {
-          type: 'selector',
-          value: words[0],
-          indent
-        }
-      )
+  return text.trim().split(/\n|\r\n/).reduce( (tokens, line, idx) => {
+    const spaces = line.match(/^\s+/) || ['']
+    const indent = spaces[0].length // 缩进
+    const input = line.trim()
+    const words = input.split(/\s/)
+    let value = words.shift()
+    if (words.length == 0) {
+      tokens.push({
+        type: 'selector',
+        value,
+        indent
+      })
     } else {
-      if (/^\$/.test(line)) {
+      let type = ''
+      if (/^\$/.test(value)) {
+        type = 'variableDef'
+      } else if (/^[a-zA-z-]+$/.test(value)) {
+        type = 'property'
+      } else {
+        throw new Error(`Tokenize error:Line${idx} "${value}" is not a vairable or property`)
+      }
+      tokens.push({
+                type,
+                value,
+                indent
+              })
+      while(value = words.shift()) {
+        tokens.push({
+          type: /^\$/.test(value) ? 'variableRef' : 'value',
+          value,
+          indent: 0
+        })
+      }
+
+    }
+    return tokens
+  }, [])
+}
+
+// 2. 语法分析（可以通过children和rules来描述这两类的层级关系）
+s = {
+  type: 'root',
+  children: [{
+    type: 'selector',
+    value: string,
+    rules: [{
+      property: string,
+      value: string
+    }]
+  }],
+  indent: number,
+  children: []
+}
+
+function parse(tokens) {
+  var ast = {
+    type: 'root',
+    children: [],
+    indent: -1
+  }
+  let path = [ast]
+  let preNode = ast
+  let preNode
+  let vDict = {}
+  while (node = tokens.shift()) {
+    if (node.type === 'variableDef') {
+      if (tokens[0] && tokens[0].type === 'value') {
+        const vNode = tokens.shift()
+        vDict[node.value] = vNode.value
+      } else {
+        preNode.rules[preNode.rules.length - 1].value = vDict[node.value]
+      }
+      continue
+    }
+    if (node.type === 'property') {
+      if (node.indent > preNode.indent) {
+
+      } else {
 
       }
     }
-  })
-  return tokens
+
+    if (node.type === 'value') {
+      
+    }
+  }
 }
