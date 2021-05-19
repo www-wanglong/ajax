@@ -37,3 +37,12 @@
     ·伪类选择器（a:hover, li:nth-child）
     ·伪元素选择器（::before, ::after）
     ·通配符选择器（*）
+### 13、说出至少5个HTML块元素标签，5个HTML行内元素标签。有什么区别
+    div p ui li h1
+    span a i label img
+### 14、background-repeat干什么用的？有什么属性？
+### 15、css优先级最高的样式？
+### 16、盒子模型的组成？
+    内容、边框、内边距、外边距。
+## 17、text-decoration用途？
+    文本修饰
