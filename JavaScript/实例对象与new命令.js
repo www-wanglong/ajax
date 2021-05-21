@@ -3,20 +3,10 @@
 
 // JavaScript语言使用构造函数作为对象的模板。’构造函数‘就是专门用来生成实例对象的函数。
 // 构造函数两个特点： 1.内部使用this,代表所要生成的对象实例
-var Vehicle = function () {
-  this.price = 100
-}
-
-var findRepeatNumber = function(nums) {
-  let finishedNnums = []
-  for(let num in nums) {
-      if (finishedNnums.some( i => i === num)) {
-          console.log(num)
-          return num
-      } else {
-        finishedNnums.push(num)
-        console.log(finishedNnums)
-      }
-  }
-  console.log(12)
-};
+// 如果函数参数是复合类型的值（数组、对象、其他函数），传递方式是地址传递。
+//   注意：如果函数内部修改的，不是参数对象的属性，而是替换掉整个参数，这时不会影响到原始值。
+// 闭包：定义在一个函数内部的函数。
+// 闭包两大用处：
+//    一是可以读取函数内部的变量，
+//    另一个就是让变量始终保持在内存中，即闭包可以使得它诞生环境一直存在。（）
+//     封装对象的私有属性和方法
