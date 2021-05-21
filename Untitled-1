@@ -26,3 +26,5 @@ function Promise(execute) {
     reject(e)
   }
 }
+
+Promise.prototype.
