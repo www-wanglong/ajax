@@ -17,17 +17,36 @@
 const MyPromise = require('./MyPromise')
 
 const promise = new MyPromise((resolve, reject) => {
-  resolve('成功')
-  // reject('失败')
+  //resolve('成功')
+  setTimeout( () => {
+    resolve('成功....')
+  }, 2000)
+  reject('失败')
+  // throw new Error('executor error')
 })
 
-const then = promise.then( (value) => {
-  return 2
-}, (error) => {
-  console.log(error)
-}).then( value => {
-  console.log(value)
-})
+function other () {
+  return new MyPromise((resolve, reject) => {
+    resolve('成功other')
+    // reject('失败')
+  })
+}
+
+// promise.then().then().then( value => {
+//   console.log(value)
+// }, error => {
+//   console.log(error)
+// })
+// let p1 = promise.then( (value) => {
+//   console.log(value)
+//   return 'aaa'
+// }, (error) => {
+//   return 1000
+// }).then( function (value) {
+//   console.log(value)
+// }, function (error) {
+//   console.log(error.message)
+// })
 
 // promise.then( (value) => {
 //   console.log(2)
@@ -44,3 +63,36 @@ const then = promise.then( (value) => {
 // })
 
 // console.log(then)
+/**
+ * Promise.all方法
+ * 静态方法
+ * 返回一个promise对象
+ * 处理普通值和promise对象
+ * 返回的结果按照数组传入的顺序
+ */
+var p1 = new MyPromise((resolve, reject) => {
+  setTimeout( () => {
+    resolve(2)
+  }, 1000)
+})
+
+var p2 = new MyPromise((resolve, reject) => {
+  resolve('ewe')
+})
+
+MyPromise.all(['1', p1, p2]).then( value => {
+  console.log(value)
+}, error => {
+  console.log(error)
+})
+
+MyPromise.resolve(10).then( value => console.log(value) )
+
+p2.finally( () => {
+  console.log('finally')
+  return p1
+}).then( value => {
+  console.log(value)
+}, reason => {
+  console.log(reason)
+})
