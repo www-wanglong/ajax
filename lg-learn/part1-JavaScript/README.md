@@ -87,5 +87,20 @@ all()全部完成  race()只会等待第一个完成
 Generator函数的返回值一个Generator对象
 
 ### 手动实现Promise
+- Promise是一个类， 需要传入一个执行器立即执行
+- Promise有三种状态pending, fulfilled, rejected
+  状态的转化
+  pending -> fulfilled
+  pending -> rejected
+  一旦状态发生变化便不可更改、
+  resolve和reject用来改变promise的状态, 进来记录执行的值
+- then方法需要传递两个参数，根据状态执行相应的函数，
+- then方法异步执行(需要在pending状态记录传递的参数，然后在resolve/reject执行)
+- then方法可以被同时多次调用
+- then方法可以链式调用 上个返回的结果会给下个then 异步执行
+- promise不能自己返回调用自己;
+- promise的then方法如果传入值 会成功回调到下个;可以不传值
+- all、resolve静态方法
+- finally、catch实例方法
 
 
