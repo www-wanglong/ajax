@@ -206,8 +206,16 @@ class MyPromise {
     })
   }
 
+  finally (callback) {
+    return this.then( value => {
+      return MyPromise.resolve(callback()).then( () => value )
+    }, reason => {
+      return MyPromise.resolve(callback()).then( () => { throw reason } )
+    })
+  }
+
   catch (failCallback) {
-    return this.then( undefined, failCallback)
+    return this.then(undefined, failCallback)
   }
 
 

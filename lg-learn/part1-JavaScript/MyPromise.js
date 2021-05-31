@@ -150,7 +150,6 @@ class MyPromise {
     if (value instanceof MyPromise) {
       return value
     }
-    return new MyPromise(resolve => resolve(value))
   }
 }
 
