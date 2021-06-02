@@ -1,4 +1,4 @@
-## ES新特性与TypeScript、JS性能优化
+## ES新特性
 ### ECMAScript概述
 - ECMAScript通常看作JavaScript的标准化规范
 - 实际上JavaScript是ECMAScript（只是提供了基本的语法）的扩展语言
@@ -51,5 +51,35 @@ Array.from() es6从一个类似数组或可迭代对象创建一个新的数组
 const arr = [1, 3, 4]
 const result = Array.from(new Set(arr))
 ```
+### Map数据结构 - 对象
+键可以使用任意类型(之前对象的键会被转化成字符串)
+### Symbol
+表示一个独一无二的值
+`const name = Symbol()`
+`for...in`、`Object.keys()`、`JSON.stringify()`无法获取Symbol类型的键值，使用`Object.getOwnPropertySymbols(obj)`可获取到
+### for...of
+- 遍历所有数据结构的统一方式
+- 实现Iterable接口才可以遍历
+### 迭代器模式
+### 生成器函数
+减少回调函数嵌套，会自动返回生成器对象，调用next方法就执行，遇到yield会暂停执行。
 
+## TypeScript
+### 强类型与弱类型
+强类型： 不允许随意的隐式类型转换
+
+弱类型：相反
+### 静态类型与动态类型
+静态类型：一个变量声明时它的类型就是明确的，声明过后不允许修改
+
+动态类型： 变量没有类型，变量中存放的值有类型
+### 强类型语言的优势
+- 错误更早暴露
+- 代码更智能，编码更准确
+- 重构更牢靠
+- 减少不必要的类型判断
+### Flow概述
+JavaScript的类型检查器
+
+``
 
