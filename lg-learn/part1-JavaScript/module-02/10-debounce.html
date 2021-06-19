@@ -1,0 +1,43 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <meta http-equiv="X-UA-Compatible" content="ie=edge">
+  <title>防抖</title>
+</head>
+<body>
+  <button id="btn">点击</button>
+  <script>
+    var oBtn = document.getElementById('btn')
+
+    function myDebounce(handle, wait, immediate) {
+      if (typeof handle !== 'function') {
+        throw new Error('must be a function')
+      }
+
+      let timer = null
+      return function () {
+        console.log(timer)
+        let init = immediate && !timer
+        clearTimeout(timer)
+        timer = setTimeout( () => {
+          timer = null
+          !immediate && handle()
+        }, wait)
+        console.log(timer)
+        init && handle()
+      }
+
+    }
+
+    function btnClick() {
+      console.log('点击了')
+    }
+
+    oBtn.onclick = myDebounce(btnClick, 300, false)
+
+  </script>
+
+</body>
+</html>
