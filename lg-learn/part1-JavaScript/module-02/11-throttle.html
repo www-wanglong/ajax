@@ -1,0 +1,57 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <meta http-equiv="X-UA-Compatible" content="ie=edge">
+  <title>节流函数实现</title>
+  <style>
+    body {
+      height: 5000px;
+    }
+  </style>
+</head>
+<body>
+  <!-- 1.判断执行的时间是否在wait
+  2. 设置定时器执行， 只能设置一个 -->
+  <script>
+
+    //节流：在自定义的一段时间内让事件触发
+    function myThrottle(handle, wait) {
+      if (typeof handle !== 'function') {
+        throw new Error('handle must be an function')
+      }
+      if (typeof wait === 'undefined') {
+        wait = 400
+      }
+      let timer = null
+      let previous = 0
+      return function proxy(...args) {
+        let now = new Date() //定义变量记录当前次执行的时刻时间
+        let self = this
+        let interval = wait - (now - previous)
+        if (interval <= 0) {
+          clearTimeout(timer)
+          timer = null
+          handle.call(self, ...args)
+          previous = new Date()
+        } else if (!timer) {
+          timer = setTimeout( () => {
+            clearTimeout(timer)
+            timer = null
+            handle.call(self, ...args)
+            previous = new Date()
+          }, interval)
+        }
+      }
+
+    }
+
+    function scrollFn() {
+      console.log('滚动了')
+    }
+
+    window.onscroll = myThrottle(scrollFn, 1000)
+  </script>
+</body>
+</html>
