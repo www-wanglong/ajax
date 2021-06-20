@@ -1,0 +1,6 @@
+模板文件
+<%= title %>
+
+<% if (success) { %>
+xixi
+<% } %>
