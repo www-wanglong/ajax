@@ -26,6 +26,9 @@
     "webpack-dev-server": "3.9.0"
   },
   "dependencies": {
-    "@types/lodash": "^4.14.170"
+    "@types/lodash": "^4.14.170",
+    "global": "^4.4.0",
+    "loadsh": "^0.0.4",
+    "serve": "^12.0.0"
   }
 }
