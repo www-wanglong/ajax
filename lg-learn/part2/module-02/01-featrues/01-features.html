@@ -1,0 +1,27 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <meta http-equiv="X-UA-Compatible" content="ie=edge">
+  <title>Document</title>
+</head>
+<body>
+  <!-- 通过script 添加type = module的属性，就可以以es module的标准执行其中的j代理 -->
+  <script type="module">
+    // 1. ESM自动采用严格模式，忽略 ‘use strict’
+    console.log(this)
+    console.log('this is module')
+    // 2. 每个ES module都是
+    var foo = 'foo'
+    console.log(foo)
+  </script>
+  <script type="module">
+    console.log(foo)
+  </script>
+
+  <script type="module" src="a.js">
+  </script>
+  <span>显示</span>
+</body>
+</html>
