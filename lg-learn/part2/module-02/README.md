@@ -1,4 +1,4 @@
-### 模块化开发
+## 模块化开发
 ### CommonJS规范
 - 一个文件就是一个规范
 - 每个模块都有单独的作用域
@@ -37,3 +37,28 @@
 - 在package.json文件中配置{"type": "module"}， commonJS需要给为.csj扩展名才可运行
 #### Babel兼容方案
 @babel/perset-env插件
+
+## Webpack打包
+整个前端项目模块化
+
+- 安装`yarn add webpack webpack-cli --dev`
+- webpack只是打包工具，加载器可以用来转换代码
+### Webpack模块加载方式
+- ES Modules标准的import声明
+- CommonJS标准的require函数
+- 遵循AMD标准的 define函数和require函数
+- css的@import和import
+- html代码中图片标签的src属性
+### Webpack核心工作原理
+loader机制加载资源文件
+### 开发一个loader
+- loader负责资源文件从输入到输出的转换
+- 对于同一个资源可以依次使用多个loader（工作管道，use从后往前）
+### webpack插件
+增强自动化能力
+- Loader专注实现资源模块加载
+- Plugin解决其他的自动化工作
+#### 常用插件
+- 自动清除输出目录 `clean-webpack-plugin`
+- 自动输出html文件 `html-webpack-plugin`
+- copy文件 `copy-webpack-plugin`

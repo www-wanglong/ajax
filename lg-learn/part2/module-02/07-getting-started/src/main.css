@@ -1,0 +1,7 @@
+@import url(reset.css);
+
+body {
+  margin: 0;
+  background-image: url(icon.png);
+  background-size: cover;
+}
