@@ -62,3 +62,7 @@ loader机制加载资源文件
 - 自动清除输出目录 `clean-webpack-plugin`
 - 自动输出html文件 `html-webpack-plugin`
 - copy文件 `copy-webpack-plugin`
+#### 插件的实现
+通过在生命周期的钩子中挂载函数实现扩展
+#### Source Map
+逆向找到源代码，便于开发人员调试

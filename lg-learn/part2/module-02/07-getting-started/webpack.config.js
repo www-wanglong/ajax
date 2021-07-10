@@ -2,6 +2,25 @@
 const path = require('path')
 const { CleanWebpackPlugin } = require('clean-webpack-plugin')
 const HtmlWebpackPlugin = require('html-webpack-plugin')
+
+class MyPlugin {
+  apply (compiler) {
+    console.log('MyPlugin 启动')
+    compiler.hooks.emit.tap('MyPlugin', compilation => {
+      for (const name in compilation.assets) {
+        if(name.endsWith('.js')) {
+          const contents = compilation.assets[name].source()
+          const withoutComments = contents.replace(/\/\*\*+\*\//g, '')
+          compilation.assets[name] = {
+            source: () => withoutComments,
+            size: () => withoutComments.length
+          }
+        }
+      }
+    })
+  }
+}
+
 module.exports = {
   mode: 'none',
   output: {
@@ -48,15 +67,16 @@ module.exports = {
   },
   plugins: [
     new CleanWebpackPlugin(),
-    new HtmlWebpackPlugin({
-      title: 'Webpack plugin',
-      meta:  {
+    new MyPlugin()
+    // new HtmlWebpackPlugin({
+    //   title: 'Webpack plugin',
+    //   meta:  {
 
-      },
-      template: './src/index.html' // 自定html内容
-    }),
-    new HtmlWebpackPlugin({
-      filename: 'about.html'
-    })
+    //   },
+    //   template: './src/index.html' // 自定html内容
+    // }),
+    // new HtmlWebpackPlugin({
+    //   filename: 'about.html'
+    // })
   ]
 }
