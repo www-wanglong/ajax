@@ -18,7 +18,7 @@
 #### ES Modules 导入
 - `import .js、`./不能省略
 - `import './module.js'` 只需要执行模块
-- `import * as md from './module.js'` 导出所有
+- `import * as md from './module.js'` 导出所有
 - 动态导入通过 `import('./module.js').then( function(module) { console.log(module) })`
 - 导出默认的和非默认的 `import { name, default as title } from './module.js'` or `import title, { name } from './module.js'`
 #### ES Modules浏览器环境Polyfill
