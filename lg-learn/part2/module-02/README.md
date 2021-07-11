@@ -58,11 +58,56 @@ loader机制加载资源文件
 增强自动化能力
 - Loader专注实现资源模块加载
 - Plugin解决其他的自动化工作
-#### 常用插件
+### 常用插件
 - 自动清除输出目录 `clean-webpack-plugin`
 - 自动输出html文件 `html-webpack-plugin`
 - copy文件 `copy-webpack-plugin`
-#### 插件的实现
+### 插件的实现
 通过在生命周期的钩子中挂载函数实现扩展
-#### Source Map
+### Source Map
 逆向找到源代码，便于开发人员调试
+### Webpack HMR
+应用运行过程中实时替换某个模块
+### Tree Shaking
+生产环境自动启用 --mode production
+
+
+`usedExports: true`
+### sideEffects
+`sideEffects: true ` 一般用于npm包标记是否有副作用
+### Code Splitting
+代码分包
+- 多入口打包
+### 动态导入
+应用运行过程中，需要用到某个模块时，再加载这个模块
+
+使用ES Module的导入，在使用的地方import，webpack内部会自动处理
+### mini-css-extract-plugin
+打包的样式会使用link形式
+
+
+## Rollup
+### 概述
+提供一个充分利用ESM各项特性的高效打包器
+### 用插件
+Rollup支持使用插件扩展（唯一的途径）
+### 加载npm模块
+`rollup-plugin-node-resolve`使用这个插件，可在代码中使用模块名称导入模块
+### 加载CommonJs模块
+`rollup-plugin-commonjs`
+### 代码拆分
+使用AMD的格式
+### 多入口打包
+input使用对象
+### 优点
+- 输出结果更加扁平化
+- 自动移除未引用的代码
+- 打包结果依然完全可读
+### 缺点
+- 加载非ESM的第三方模块比较复杂
+- 模块最终都被打包到了一个函数中
+- 浏览器环境中，代码拆分功能依赖AMD
+使用于开发类库/框架
+
+## Parcel
+零配置前端打包器
