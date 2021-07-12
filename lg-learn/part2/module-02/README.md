@@ -111,3 +111,14 @@ input使用对象
 
 ## Parcel
 零配置前端打包器
+
+## 规范化标准
+代码、文档、甚至提交日志。
+### ESLint
+### Perttier
+`npm install perttier -D`
+
+
+`npx prettier . --write`
+
+### Git Hooks(git 钩子)
