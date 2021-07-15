@@ -122,3 +122,35 @@ input使用对象
 `npx prettier . --write`
 
 ### Git Hooks(git 钩子)
+`.git`
+### Husky
+`npm install husky`
+
+package.json
+```JavaScript
+"husky": {
+  "hooks": {
+    "pre-commit": "npm run test"
+  }
+}
+
+"script": {
+  "test": "eslint ./index.js"
+}
+```
+
+格式化代码
+`npm install lint-staged`
+```JavaScript
+"lint-staged": {
+  "*.js": [
+    "eslint",
+    "git add"
+  ]
+}
+
+"script": {
+  "test": "eslint ./index.js",
+  "pre-commit": "lint-staged"
+}
+```
