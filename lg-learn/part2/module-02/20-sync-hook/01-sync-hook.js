@@ -13,4 +13,4 @@ hook.tap('fn2', function (name, age) {
 })
 
 //触发
-hook.call('long', 19)
+// hook.call('long', 19)

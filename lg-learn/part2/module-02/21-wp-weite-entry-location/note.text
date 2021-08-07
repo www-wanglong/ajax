@@ -1,0 +1,37 @@
+一、步骤
+  1. 实例化compiler对象(继承Tapable， 里面有这个钩子)
+  2. 由compiler调用run方法
+二、compiler 实例化操作
+  1. compiler继承tapable，因此具备钩子能力（监听事件，触发事件、webpack是一个事件流）
+  2. 在实例化了compiler对象之后就往它的身上挂载很多属性，
+    其中NodeEnvironmentPlugin这个操作就让它具备了文件的读写能力
+  3. 具备fs操作能力之后又将plugins中的插件都挂载到了compiler对象身上
+  4. 将内部默认的插件与compiler建立关系，其中EntryOptionPlugin处理了入口模块的ID
+  5. 在实例化compiler的时候只是监听了make钩子(SingleEntryPlugin)
+    5.1 在SingleEntryPlugin模块的apply方法中有两个钩子监听
+    5.2 其中compilation钩子就是让compilation具备了利用normalModuleFactory工厂创建一个普通模块的能力
+    5.3 因为他就是利用自己创建的模块来加载需要被打包的模块
+    5.4 其中make钩子 在compiler.run的时候就会被触发， 走到这，就意味着某个模块执行打包之前的所有准备工作就完成了
+    5.5 addEntry方法调用
+三、run方法执行（）
+  1. run方法里就是一堆钩子按着顺序触发(beforeRun run compile)
+  2. compile方法执行
+    2.1 准备参数（其中normalModuleFactory是后续用于创建模块的）
+    2.2 触发beforeCompile
+    2.3 将第一步的参数传给一个函数，开始创建compilation（newCompilation）
+    2.4 在调用newCompilation的内部
+      - 调用 createCompilation
+      - 触发了 this.compilation钩子和compilation钩子的监听
+  3. 当创建了compilation对象之后就触发make钩子
+  4. 当触发make钩子监听的时候，将compilation对象传递过去
+四、总结
+
+  1. 实例化compiler
+  2. 调用compile方法
+  3. newCompilation
+  4. 实例化了一个compilation对象
+  5. 触发make监听
+  6. addEntry方法
+
+
+

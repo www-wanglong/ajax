@@ -21,7 +21,7 @@
       "type": "node",
       "request": "launch",
       "name": "Launch Program",
-      "program": "${workspaceFolder}/lg-learn/part2/module-02/20-sync-hook/04-sync-loop-hook.js"
+      "program": "${workspaceFolder}/lg-learn/part2/module-02/21-wp-weite-entry-location/run.js"
     }
   ]
 }
