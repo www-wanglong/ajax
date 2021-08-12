@@ -378,7 +378,7 @@ const Person = props => {
 - render
 - getSnapshotBeforeUpdate(组件更新之前需要做某种逻辑或计算)
 - componentDidUpdate
-#### 3.5.3 Unmounting
+### 3.5.3 Unmount
 - componentWillUnmount
 
 ### 3.6 Context
