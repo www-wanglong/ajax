@@ -1,4 +1,4 @@
-# React
+# React基础知识
 ## 1. 介绍
 React是一个用于构建用户界面的JavaScript库，它只负责应用的视图层，帮助开发人员构建快速且交互式的web应用程序。
 
@@ -378,7 +378,7 @@ const Person = props => {
 - render
 - getSnapshotBeforeUpdate(组件更新之前需要做某种逻辑或计算)
 - componentDidUpdate
-### 3.5.3 Updating
+#### 3.5.3 Unmounting
 - componentWillUnmount
 
 ### 3.6 Context
@@ -589,7 +589,7 @@ class Detail extends Component {
 
 ```
 ### 5.4 路由重定向
-```JavaScript
+```react
 import { Redirect } from 'react-router-dmo'
 
 class Login extends Component {
@@ -600,3 +600,61 @@ class Login extends Component {
   }
 }
 ```
+
+
+
+# React Virtual DOM以及Diff算法
+## 1. JSX到底是什么
+JSX语法为了让React开发人员编写用户界面代码更加轻松。
+
+React.createElement()用来创建Virtual DOM
+## 2. DOM操作问题
+大多数JavaScript框架对于DOM的更新远远超过其必须的更新，从而使得这种缓慢的操作变得更糟。
+
+Virtual DOM出现的目的就是为了提高JavaScript操作DOM对象的效率。
+## 3. 什么是Virtual DOM
+在React中，每个DOM对象都有一个对应的Virtual DOM对象，它是DOM对象的JavaScript对象表现形式，其实就是使用JavaScript对象来描述DOM对象信息。比如DOM对象的类型是什么，它身上有哪有属性，它拥有哪些子元素。
+```react
+<div className="container">
+  <h3>Hello React</h3>
+  <p>React is great </p>
+</div>
+```
+
+```react
+{
+  type: "div",
+  props: { className: "container" },
+  children: [
+    {
+      type: "h3",
+      props: null,
+      children: [
+        {
+          type: "text",
+          props: {
+            textContent: "Hello React"
+          }
+        }
+      ]
+    },
+    {
+      type: "p",
+      props: null,
+      children: [
+        {
+          type: "text",
+          props: {
+            textContent: "React is great"
+          }
+        }
+      ]
+    }
+  ]
+}
+```
+## 4. Virtual DOM如何提升效率
+精准找出发生变化的DOM对象，只更新发生变化的部分。
+
+在React第一次创建DOM对象后，会为每个DOM对象创建其对应的Virtual对象，在DOM对象发生更新之前，React会先更新所有的Virtual DOM对象，然后React会将更新后的Virtual DOM和更新前的Virtual DOM进行比较，从而找出发生变化的部分，React会将发生变化的部分更新到真实的DOM对象中，React仅更新必要更新的部分。
+## 创建Virtual DOM
