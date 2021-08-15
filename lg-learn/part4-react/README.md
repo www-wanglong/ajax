@@ -1,4 +1,4 @@
-# React基础知识
+# 一、React基础知识
 ## 1. 介绍
 React是一个用于构建用户界面的JavaScript库，它只负责应用的视图层，帮助开发人员构建快速且交互式的web应用程序。
 
@@ -603,7 +603,7 @@ class Login extends Component {
 
 
 
-# React Virtual DOM以及Diff算法
+# 二 、 React Virtual DOM以及Diff算法
 ## 1. JSX到底是什么
 JSX语法为了让React开发人员编写用户界面代码更加轻松。
 
@@ -657,4 +657,36 @@ Virtual DOM出现的目的就是为了提高JavaScript操作DOM对象的效率�
 精准找出发生变化的DOM对象，只更新发生变化的部分。
 
 在React第一次创建DOM对象后，会为每个DOM对象创建其对应的Virtual对象，在DOM对象发生更新之前，React会先更新所有的Virtual DOM对象，然后React会将更新后的Virtual DOM和更新前的Virtual DOM进行比较，从而找出发生变化的部分，React会将发生变化的部分更新到真实的DOM对象中，React仅更新必要更新的部分。
-## 创建Virtual DOM
+## 5. 创建Virtual DOM
+在React代码执行前，JSX会被Babel转换为`React.createElement`方法的调用，在调用`createElement`方法时会传入元素的类型，元素的属性以及元素的子元素，`crateElement`方法的返回值为构建好的`Virtual DOM`对象。
+```JavaScript
+ {
+   type: 'div',
+   props: null,
+   children: [{type: 'text', props: {textContent: 'hello'}}]
+ }
+```
+## 6. 渲染VIrtual DOM对象为DOM对象
+调用render方法
+## 7. 为元素节点添加属性
+- addEventListener
+- setAttribute
+## 8. 渲染组件
+### 8.1 函数组件
+type: 'function'
+### 8.2 类组件
+render方法
+## 9. Virtual DOM对比
+## 10. ref 属性
+## 11. key 属性
+
+# 三、Fiber
+## 2. requireIdleCallback
+### 2.1 核心API功能介绍
+利用浏览器的空余时间执行任务，如果有更高优先级的任务执行，当前任务可以被终止，执行优先级高级别的任务。
+```JavaScript
+requestIdleCallback(function(deadline) {
+  // deadline.timeRemaining() // 获取浏览器的空余时间
+})
+```
+## 3. Fiber
