@@ -1,7 +1,10 @@
 import logo from './logo.svg';
 import './App.css';
+import * as React from "react"
+import * as ReactDOM from "react-dom"
 
-function App() {
+function App(props) {
+  console.log(props.key)
   return (
     <div className="App">
       <header className="App-header">
