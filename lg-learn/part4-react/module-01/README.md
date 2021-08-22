@@ -735,3 +735,6 @@ DOM 更新操作： newFiber vs oldFiber -> Fiber[] -> DOM
   alternate    fiber 备份 fiber , 比对时使用
 }
 ```
+
+fiber链表结构图
+![image](./images/09.png)
