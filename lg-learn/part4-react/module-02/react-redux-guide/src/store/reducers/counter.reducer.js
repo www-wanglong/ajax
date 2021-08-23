@@ -1,7 +1,7 @@
 import { DECREMENT, INCREMENT } from "../const/counter.const"
 
 const initialState = {
-  count: 0
+  count: 0,
 }
 
 function reducer(state = initialState, action) {

@@ -32,3 +32,14 @@ store.dispatch({ type: '...' })
 1. 组件通过dispatch方法触发action
 2. Store接受Action并将Action分发给Reducer
 3. Reducer根据Action类型返回
+
+## 3. Redux中间件
+### 3.1 什么是Redux中间件
+中间件允许我们扩展redux程序
+### 3.3 开发redux中间件
+```JavaScript
+export default store => next => action => {}
+```
+## 4. Redux常用中间件
+### 4.1 redux-thunk
+允许在redux的工作流中添加异步操作

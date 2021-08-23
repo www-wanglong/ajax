@@ -4,10 +4,10 @@ import { connect } from 'react-redux'
 import { bindActionCreators } from 'redux'
 import * as counterAction from '../store/actions/counter.action'
 console.log(counterAction)
-function Counter ({ count, dispatch, increment, decrement }) {
+function Counter ({ count, increment_async, increment, decrement }) {
   return (
     <div>
-      <button onClick={() => increment(5)}>+</button>
+      <button onClick={() => increment_async(5)}>+</button>
       <span>{count}</span>
       <button onClick={decrement}>-</button>
     </div>
@@ -19,21 +19,11 @@ function Counter ({ count, dispatch, increment, decrement }) {
 // 3. connect 方法可以获取dispatch
 
 const mapStateProps = state => ({ //props会映射给组件
-  count: state.count,
+  count: state.counter.count,
   b: '2'
 });
 
 // 生成一些action函数
-
-// const mapDispatchToProps = dispatch => ({
-//   increment () {
-//     dispatch({ type: 'increment' })
-//   },
-
-//   decrement () {
-//     dispatch({ type: 'decrement' })
-//   }
-// });
 // 第二个参数
 const mapDispatchToProps = dispatch => bindActionCreators(counterAction, dispatch)
 export default connect(mapStateProps, mapDispatchToProps)(Counter);
