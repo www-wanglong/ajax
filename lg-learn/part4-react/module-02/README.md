@@ -43,3 +43,7 @@ export default store => next => action => {}
 ## 4. Redux常用中间件
 ### 4.1 redux-thunk
 允许在redux的工作流中添加异步操作
+### 4.2 redux-saga
+redux-sage可以将异步操作从Action Creator文件中抽离出来，放在一个单独的文件中
+### 4.3 redux-actions
+redux流程中大量的样板代码读写很痛苦，使用redux-actions可以简化Action和Reducer的处理。
