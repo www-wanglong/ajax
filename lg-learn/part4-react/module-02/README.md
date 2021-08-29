@@ -47,3 +47,11 @@ export default store => next => action => {}
 redux-sage可以将异步操作从Action Creator文件中抽离出来，放在一个单独的文件中
 ### 4.3 redux-actions
 redux流程中大量的样板代码读写很痛苦，使用redux-actions可以简化Action和Reducer的处理。
+## 5. Redux toolkit
+对redux进行的二次封装，用于高效Redux开发。
+`yarn add @reduxjs/toolkit@1.6.0 react-redux@7.2.4`
+### 5.1 创建状态切片
+### 5.5 Action预处理
+可以通过prepare方法对
+## 6. 实体适配器
+将状态放入实体适配器，实体适配器提供状态的各种方法，简化操作。

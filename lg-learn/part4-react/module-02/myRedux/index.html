@@ -1,0 +1,79 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <meta http-equiv="X-UA-Compatible" content="ie=edge">
+  <title>Document</title>
+</head>
+<body>
+  <button id="increment">+</button>
+  <span id="box">-</span>
+  <button id="decrement">-</button>
+  <script src="myRedux.js"></script>
+  <script src="middlewares/logger.js"></script>
+  <script src="middlewares/thunk.js"></script>
+  <script>
+    function enhancer(createStore) {
+      return function (reducer, preloadedState) {
+        var store = createStore(reducer, preloadedState)
+        var dispatch = store.dispatch
+        function _dispatch (action) {
+          if (typeof action === 'function') {
+            return action(dispatch)
+          }
+          dispatch(action)
+        }
+        return {
+          ...store,
+          dispatch: _dispatch
+        }
+      }
+    }
+    // 创建store
+    function counterReducer (state, action) {
+      switch (action.type) {
+        case 'increment':
+          return state + 1;
+        case 'decrement':
+          return state - 1;
+        default:
+          return state;
+      }
+    }
+    var rooReducer = combineReducers({
+      counter: counterReducer
+    })
+
+    var store = createStore(rooReducer, {counter: 100}, applyMiddleware(logger, thunk))
+
+    store.subscribe(function () {
+      //获取状态
+      console.log(store.getState())
+      document.getElementById('box').innerHTML = store.getState().counter
+    })
+
+    var actions = bindActionCreators({increment, decrement}, store.dispatch)
+
+    function increment () {
+      return {type: 'increment'}
+    }
+
+    function decrement () {
+      return {type: 'decrement'}
+    }
+
+
+
+    document.getElementById('increment').onclick = function () {
+      console.log(11)
+      actions.increment()
+    }
+
+    document.getElementById('decrement').onclick = function () {
+      actions.decrement()
+    }
+
+  </script>
+</body>
+</html>
