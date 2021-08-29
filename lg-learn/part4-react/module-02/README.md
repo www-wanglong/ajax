@@ -55,3 +55,7 @@ redux流程中大量的样板代码读写很痛苦，使用redux-actions可以�
 可以通过prepare方法对
 ## 6. 实体适配器
 将状态放入实体适配器，实体适配器提供状态的各种方法，简化操作。
+
+# 二 、Mobx 6
+## 下载
+`yarn add mobx@6.3.1 mobx-react-lite@3.2.0`
