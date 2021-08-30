@@ -59,3 +59,42 @@ redux流程中大量的样板代码读写很痛苦，使用redux-actions可以�
 # 二 、Mobx 6
 ## 下载
 `yarn add mobx@6.3.1 mobx-react-lite@3.2.0`
+# 三、Mobx 5
+## 1. Mobx介绍
+### 1.1 Mobx介绍
+简单，可扩展的状态管理库
+
+React和Mobx是一对强力组合，React负责渲染应用的状态，Mobx负责管理应用状态供React使用
+
+## 2. 开发
+### 2.1 启用装饰器语法支持
+1. `npm install react-app-rewired @babel/plugin-proposal-decorators customize-cra`
+
+2. 在项目根目录下创建 config-overrides.js
+```JavaScript
+  const { override, addDecoratorsLegacy } = require("customize-cra");
+
+  module.exports = override(addDecoratorsLegacy());
+```
+
+3. package.json
+```json
+  "scripts": {
+    "start": "react-app-rewired start",
+    "build": "react-app-rewired build",
+    "test": "react-app-rewired test",
+  }
+```
+解决vscode编辑器关于装饰器语法的警告
+
+"javascript.implicitProjectConfig.experimentalDecorators": true
+
+
+## 3.Mobx + React
+### 3.1 下载Mobx
+`npm install mobx mobx-react`
+### 3.2 Mobx工作流程
+action -> state -> views
+
+## 5.Mobx数据检测
+### 5.2 autorun方法
