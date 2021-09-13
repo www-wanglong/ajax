@@ -61,3 +61,22 @@ npm install formik
 ## 2.1 Formik基本使用
 ## 2.3 Yup验证
 ## 2.4 使用组件的方式构建代码
+
+# 三、Chakra-UI
+现代化React UI框架
+## 1. 介绍
+### 1.1 Chakra-UI介绍
+Chakra UI是一个简单的，模块化的易于理解的ui组件库，提供了丰富的构建React应用所需的UI组件。
+- 1. 内置Emotion，是CSS-IN-JS解决方案的集成
+- 2. 基于Styled-Systems
+- 3. 支持开箱即用的主题功能
+- 4. 默认支持白天和黑夜两种模式
+- 5. 拥有大量功能丰富且非常有用的组件
+- 6. 文档清晰
+## 2. 快速开始
+### 2.1 下载
+`npm install @chakra-ui/core@1.0.0-next.2`
+### 2.2 克隆默认主题
+`npm install @chakra-ui/theme`
+### 2.3 引入主题
+### 2.4 引用css重置组件

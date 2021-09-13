@@ -1,6 +1,12 @@
 import React from 'react';
-import styled from '@emotion/styled'
-import { css, keyframes, Global } from '@emotion/core'
+import styled from '@emotion/styled';
+import { css, keyframes, Global } from '@emotion/core';
+import { useTheme } from 'emotion-theming'
+
+// 使用主题色
+const primaryColor = props => css`
+  color: ${props.colors.primary}
+`;
 
 const styles = css`
   body {
@@ -10,6 +16,7 @@ const styles = css`
     color: red;
   }
 `;
+
 // 动画使用
 const move = keyframes`
   0% {
@@ -22,7 +29,7 @@ const move = keyframes`
     left: 600px;
     top: 300px;
   }
-`
+`;
 
 
 const box = css`
@@ -36,7 +43,8 @@ const Button = styled.button`
   width: 100px;
   height: 30px;
   background: ${ props => props.bgColor || 'skyblue' }
-`
+`;
+
 // css选择器 &
 const Container =  styled.div`
   width: 100px;
@@ -79,15 +87,18 @@ const Fancy2 = styled(Demo)({
 // 通过父组件设置子组件的样式
 const Child = styled.div({
   color: 'red'
-})
+});
 
 const Parent = styled.div({
   [Child]: {
     color: 'yellow'
   }
-})
+});
 
 function App() {
+
+  console.log(useTheme())
+  return <div css={primaryColor}>dev</div>
 
   return <div css={box}></div>
 
