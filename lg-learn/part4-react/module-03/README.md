@@ -80,3 +80,43 @@ Chakra UI是一个简单的，模块化的易于理解的ui组件库，提供了
 `npm install @chakra-ui/theme`
 ### 2.3 引入主题
 ### 2.4 引用css重置组件
+
+# 四、React组件性能优化
+React组件性能优化的核心是减少渲染真实DOM节点的频率，减少Virtual DOM对比的频率
+## 1. 组件卸载前进行清理操作
+## 2. 纯组件
+- 纯组件会对组件输入数据进行浅比较(引用对象会出问题)， 如果当前输入数据和上次输入数据相同，组件不会重新渲染。
+## 3. shouldComponentUpdate
+## 4. React.memo 内部也是浅层比较
+memo将函数组件变成纯组件
+## 5. 使用组件懒加载
+- 路由组件懒加载
+## 6. 使用Fragment避免额外标记
+React组件中返回jsx如果有多个同级元素，多个同级元素必须要有一个同级的父级。
+## 7. 不要适应内联函数定义
+## 8. 在构造函数中进行函数this绑定
+只执行一次
+## 9. 类组件中的箭头函数
+类的实例对象属性，而不是原型对象属性。
+## 10. 避免使用内联样式属性
+执行时为元素添加样式
+## 11. 优化条件渲染
+减少挂载和卸载的次数。
+## 12. 避免重复无限渲染
+## 13. 为组件创建错误边界
+## 14. 避免数据结构突变
+## 15. 依赖优化
+useBabelRc
+- 下载
+`yarn add react-app-rewired customize-cra lodash babel-plugin-lodash`
+- 新建config-overrides.js
+```JavaScript
+```
+- 创建.babelrc
+```
+{
+  "plugins": ["loadsh"]
+}
+```
+
+- 修改package.json

@@ -16,6 +16,9 @@ import chakraUILight from '../assets/images/chakra-ui-light.png'
 import chakraUIDark from '../assets/images/chakra-ui-dark.png'
 
 export default function Form() {
+  /**
+   * 根据主题色 改变颜色
+   */
   const bgColor = useColorModeValue('gray.200', 'gray.700')
   const chakraUI = useColorModeValue(chakraUILight, chakraUIDark)
   return (
