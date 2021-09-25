@@ -1,10 +1,12 @@
 import React from 'react';
 import Header from '../components/Header'
+import SEO from '../components/SEO'
 import { graphql } from "gatsby";
 
 export default function List({ data }) {
   return (
     <div>list
+      <SEO title="list page" description="list page description" />
       <Header />
       {
         data.allMarkdownRemark.nodes.map( post => (

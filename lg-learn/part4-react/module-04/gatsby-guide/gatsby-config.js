@@ -27,6 +27,13 @@ module.exports = {
       }
     },
     {
+      resolve: "gatsby-source-filesystem",
+      options: {
+        name: "xml",
+        path: `${__dirname}/xml`,
+      }
+    },
+    {
       resolve: "gatsby-transformer-remark",
       options: {
         plugins: ["gatsby-remark-images"]
@@ -35,12 +42,25 @@ module.exports = {
     "gatsby-transformer-json",
     "gatsby-plugin-sharp",
     "gatsby-transformer-sharp",
+    // {
+    //   resolve: "gatsby-source-strapi",
+    //   options: {
+    //     apiURL: "http://localhost:1337",
+    //     contentTypes: ["Post"]
+    //   }
+    // },
+    // 自定义strapi
     {
-      resolve: "gatsby-source-strapi",
+      resolve: "gatsby-source-mystrapi",
       options: {
-        apiURL: "http://localhost:1337",
-        contentTypes: ["Post"]
+        apiUrl: "http://localhost:1337",
+        contentTypes: ["Post", "Product"]
       }
-   }
+    },
+    {
+      resolve: "gatsby-transformer-xml"
+    },
+    "gatsby-plugin-react-helmet",
+    "gatsby-plugin-less"
   ],
 }
