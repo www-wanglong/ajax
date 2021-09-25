@@ -118,3 +118,11 @@ import styles from './list.module.css'
 Next.js应用允许React开发者编写服务器代码创建数据接口。
 
 #### 3.6.2 实现API Routes
+
+# 四、Gatsby
+## 4.1 介绍
+Gatsby是一个静态站点生成器
+## 4.2 创建Gatsby项目
+- 创建：`gatsby new project-name https://github.com/gatsbyjs/gatsby-starter-hello-world`
+- 启动：`gatsby develop 或 npm start`
+- 访问：`localhost:8000`
