@@ -11,7 +11,7 @@ export default function List({ data, pageContext }) {
   const articleReducer = useSelector(state => state.articleReducer)
   console.log(articleReducer)
   useEffect(() => {
-    dispatch({type: 'loadArticles', limit, offset: skip})
+    // dispatch({type: 'loadArticles', limit, offset: skip})
   }, [])
 
   return (

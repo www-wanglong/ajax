@@ -1,5 +1,5 @@
 {
-  "name": "gatsby-source-list",
+  "name": "gatsby-plugin-article",
   "version": "1.0.0",
   "description": "",
   "main": "gatsby-node.js",

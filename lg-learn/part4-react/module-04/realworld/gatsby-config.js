@@ -14,6 +14,7 @@ module.exports = {
     {
       resolve: "gatsby-source-list",
       options: { apiUrl: "http://localhost:5000" },
-    }
+    },
+    "gatsby-plugin-article"
   ],
 }
