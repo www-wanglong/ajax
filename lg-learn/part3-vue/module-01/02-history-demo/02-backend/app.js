@@ -6,7 +6,7 @@ const express = require('express')
 
 const app = express()
 // 注册处理 history 模式的中间件
-//app.use(history())
+app.use(history())
 // 处理静态资源的中间件，网站根目录 ../web
 app.use(express.static(path.join(__dirname, '../web')))
 
