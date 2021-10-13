@@ -35,6 +35,7 @@ class Compiler {
       }
     })
     // 判断是否是指令
+
   }
 
   updater (node, key, attrName) {
