@@ -4,6 +4,6 @@ import App from './App';
 import App1 from './App1'
 
 ReactDOM.render(
-  <App1 />,
+  <App />,
   document.getElementById('root')
 );

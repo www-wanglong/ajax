@@ -188,7 +188,7 @@ function getData () {
 }
 
 // useMemo
-function App8 () {
+function App () {
   const [count, setCount] = useState(0)
   const [bool, setBool] = useState(true)
   const result = useMemo(() => {
@@ -293,7 +293,7 @@ function useUpdateInput (initialValue) {
   }
 }
 
-function App () {
+function App13 () {
 
   const usernameInput = useUpdateInput('')
   const passwordInput = useUpdateInput('')

@@ -19,22 +19,26 @@ class Observer {
   // 把属性定义成 get set
   defineReactive(obj, key, value) {
     let that = this
+    // 负责收集依赖
+    let dep = new Dep()
     // 如果value是对象 转换成响应式对象
     that.walk(value)
-    console.log('defineReactive', obj)
     Object.defineProperty(obj, key, {
       enumerable: true,
       configurable: true,
       get () {
-        return value
+        // 收集依赖
+        Dep.target && dep.addSub(Dep.target)
+        return value;
       },
       set (newValue) {
         if (newValue === value) {
-          return
+          return;
         }
-        that.walk(newValue)
-        value = newValue
-        // 发送通知
+        that.walk(newValue);
+        value = newValue;
+        // 发送通知()
+        dep.notify();
       }
     })
   }
