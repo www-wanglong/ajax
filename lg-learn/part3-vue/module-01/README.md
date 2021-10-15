@@ -83,3 +83,18 @@ push、repalce、go方法
 ## History模式的使用
 - 服务器端处理
 - nginx配置
+
+## vue响应式原理
+![image](./双向绑定原理.png)
+
+
+# Vue虚拟DOM
+## 1.什么是Vitual DOM
+由普通js对象来描述DOM对象
+## 2.Snabbdom
+
+A virtual DOM library with focus on simplicity, modularity, powerful features and performance.
+### 2.1 模块作用
+- Snabbdom的核心库并不能处理DOM元素的属性/样式/事件等，可以通过注册Snabbdom默认提供的模块来实现
+- Snabbdom中的模块可以用来扩展Snabbdom的功能
+- Snabbdom中的模块的实现是通过注册全局的钩子函数来实现的
