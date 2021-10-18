@@ -39,9 +39,26 @@ class Compiler {
   }
 
   updater (node, key, attrName) {
+    let eventName
+    if (attrName.startsWith('on:')) {
+      eventName = attrName.split(':')[1]
+      attrName = 'on'
+    }
     let updaterFn = this[`${attrName}Updater`]
-    updaterFn && updaterFn.call(this, node, this.vm[key], key)
+    updaterFn && updaterFn.call(this, node, this.vm[key], key, eventName)
   }
+
+  /** 处理v-html指令 */
+  htmlUpdater (node, value, key) {
+    node.innerHTML = value
+    this.compile(node)
+  }
+
+  /** 处理v-on指令 */
+  'onUpdater' (node, value, key, eventName) {
+    node.addEventListener(eventName, this.vm.$options.methods[key])
+  }
+
 
   /** 处理v-text指令 */
   textUpdater (node, value, key) {
