@@ -5,7 +5,16 @@ const patch = init([]);
 
 // h函数参数1 标签+选择器
 // h函数参数2 如果是字符串就是标签中的文本内容
-let vnode = h('div#container.cls', 'hello world')
+let vnode = h('div#container.cls', {
+  hook: {
+    init (vnode) {
+      console.log('vnode', vnode.elm)
+    },
+    create (emptyNode, vnode) {
+      console.log(vnode.elm)
+    }
+  }
+} ,'hello world')
 let app = document.querySelector('#app')
 
 // patch参数1 旧的VNode

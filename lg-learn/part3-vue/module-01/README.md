@@ -98,3 +98,7 @@ A virtual DOM library with focus on simplicity, modularity, powerful features an
 - Snabbdom的核心库并不能处理DOM元素的属性/样式/事件等，可以通过注册Snabbdom默认提供的模块来实现
 - Snabbdom中的模块可以用来扩展Snabbdom的功能
 - Snabbdom中的模块的实现是通过注册全局的钩子函数来实现的
+### 2.3 源码分析
+- h函数：调用vnode函数，创建vnode对象并返回
+- vnode函数： 将真实dom转换成js对象
+- patch函数：
