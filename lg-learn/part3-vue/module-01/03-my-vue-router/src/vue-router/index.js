@@ -1,3 +1,7 @@
+// history模式
+// 通过history.pushState()方法改变地址栏地址
+// 监听popstate事件 根据当前路由地址找到对应的组件渲染
+
 let _Vue = null
 
 export default class VueRouter {
