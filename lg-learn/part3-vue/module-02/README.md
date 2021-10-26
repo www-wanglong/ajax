@@ -34,6 +34,11 @@
   - `new Vue()`
   - `this._init()`
   - `this.$mount()`
+  - `mountComponent()`
+  - `new Watcher()渲染Watcher`
+  - `updateComponent()`
+  - `vm._render() -> createElement()`
+  - `vm._update()`
 
 ## 4. 数据响应式原理
 ### 4.1 问题
@@ -57,7 +62,7 @@
   - 对象的响应式处理，调用walk方法（遍历对象的所有属性）
 - defineReactive
   - 为每个属性创建dep对象，收集依赖
-  -如果当前属性的值是对象，调用observe
+  - 如果当前属性的值是对象，调用observe
   - 定义getter（收集依赖、返回属性的值）
   - 定义setter（收集依赖、返回属性的值）
 - 收集依赖
@@ -65,7 +70,7 @@
   - 访问data中的成员的时候收集依赖，defineReactive的getter中收集依赖
   - 把属性对应的watcher对象添加到dep的subs数组中
   - 给childOb收集依赖，目的是子对象添加和删除依赖时发送通知
-- Wacher
+- Watcher
   - dep.notify()在调用watcher对象的update()方法
   - queueWatcher()判断watcher是否处理，如果没有的话添加到queue队列中，并调用flushSchedulerQueue()
 
@@ -84,3 +89,19 @@ vm.$createElement(tag, data, children)
 
 ## 4. key的作用
 减少dom操作
+
+### 5 模版编译
+#### 5.1. 什么是抽象语法树
+- AST
+
+#### 5.2 过程
+- compliceToFunctions
+- complice
+- baseCompile()
+  - parse()：把template转换成AST tree
+  - optimize(): 优化AST
+  - generate(): AST tree生成js的创建代码
+## 6. 组件
+### 6.1 注册组件
+- 全局组件
+- 局部组件
