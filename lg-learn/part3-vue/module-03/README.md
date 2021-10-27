@@ -9,4 +9,20 @@ view -> action -> state -> view
 - 子组件中通过props接收数据
 - 父组件中给子组件通过相应属性传值
 ### 2.2 子组件给父组件传值
+- vm.$emit
+- vm.v-on
 ### 2.3 不相关组件传值
+使用同一个vue实例
+
+## 3. Vuex
+### 3.1 什么是Vuex
+- Vuex是专门为Vue.js设计的状态管理库
+### 3.2 Vuex核心概念
+#### 3.2.1 Store
+#### 3.2.2 - State
+- Getter
+- Mutation
+- Action
+- Module
+
+![image](./vuex.png)

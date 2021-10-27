@@ -1,22 +1,28 @@
 <template>
   <div id="app">
-    <h1>父传子</h1>
-    <parent01></parent01>
+    <h1>Vuex -demo</h1>
+    count: {{ num }} <br>
+    msg: {{ message }} <br>
+    <h2>Getter</h2>
+    reverseMsg: {{ rMsg }}
   </div>
 </template>
 
 <script>
 
-import Parent01 from './components/01-props-down/Parent'
+import { mapState, mapGetters } from 'vuex'
+
 export default {
   name: 'App',
-  components: {
-    Parent01,
-  },
-  data () {
-    return {
-      num: 1
-    }
+  computed: {
+    // ...mapState(['count', 'msg'])
+    ...mapState({
+      num: 'count',
+      message: 'msg',
+    }),
+    ...mapGetters({
+      rMsg: 'reverseMsg'
+    })
   }
 }
 </script>
