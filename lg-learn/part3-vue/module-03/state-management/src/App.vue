@@ -1,16 +1,24 @@
 <template>
   <div id="app">
-    <h1>Vuex -demo</h1>
-    count: {{ num }} <br>
-    msg: {{ message }} <br>
+    <h1>Vuex - Dem1o</h1>
+    count：{{ $store.state.count }} <br>
+    msg: {{ $store.state.msg }}
+
     <h2>Getter</h2>
-    reverseMsg: {{ rMsg }}
+    reverseMsg: {{ $store.getters.reverseMsg }}
+
+    <h2>Mutation</h2>
+    <button @click="$store.commit('increate', 2)">Mutation</button>
+
+    <h2>Action</h2>
+    <button @click="$store.dispatch('increateAsync', 5)">Action</button>
   </div>
 </template>
 
+
 <script>
 
-import { mapState, mapGetters } from 'vuex'
+import { mapState, mapGetters, mapMutations, mapActions } from 'vuex'
 
 export default {
   name: 'App',
@@ -22,7 +30,13 @@ export default {
     }),
     ...mapGetters({
       rMsg: 'reverseMsg'
-    })
+    }),
+    ...mapState('products', ['products']),
+  },
+  methods: {
+    ...mapMutations(['increate']),
+    ...mapActions(['increateAsync']),
+    ...mapMutations('products', ['setProducts'])
   }
 }
 </script>
