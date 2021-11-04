@@ -52,3 +52,14 @@ view -> action -> state -> view
 - 是否真的需要SEO
 
 ## 2. NuxtJs
+
+### 2.1 NuxtJs是什么
+- 一个基于Vue.js生态的第三方开源服务端渲染应用框架
+
+### 2.2 路由
+#### 2.3.1 路由跳转
+- a链接，刷新导航，走服务端渲染
+- router-link 导航链接组件
+- 编程式导航，`this.$router.push('./')` 和vue-router
+
+#### 2.3.2动态路由
