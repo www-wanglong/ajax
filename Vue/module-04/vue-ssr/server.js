@@ -33,23 +33,26 @@ if (isProd) {
   })
 }
 
-const render = (req, res) => {
-  renderer.renderToString({
-    title: 'test',
-    meta: `
-      <meta></meta>
-    `
-  }, (err, html) => {
-    if (err) {
-      return res.status(500).end('Inter Server Error')
-    }
-    //res.setHeader('Content-Type', 'text/html; charset=utf-8')
+const render = async (req, res) => {
+  try {
+    const html = await renderer.renderToString({
+      title: 'test',
+      meta: `
+        <meta></meta>
+      `,
+      url: req.url
+    })
     res.end(html)
-  })
+
+  } catch(error) {
+    console.log(error)
+    return res.status(500).end('Inter Server Error')
+  }
 
 }
 
-server.get('/', isProd ? render : async (req, res) => {
+// 服务端路由设置为* 处理所有请求
+server.get('*', isProd ? render : async (req, res) => {
   // 等待有renderer渲染器 有了以后render
   await onReady
   render(req, res)

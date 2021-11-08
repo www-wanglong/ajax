@@ -4,6 +4,8 @@ const chokidar = require('chokidar')
 const webpack = require('webpack')
 const webpackDevMiddleware = require('webpack-dev-middleware')
 
+const webpackHotMiddleware = require('webpack-hot-middleware')
+
 const resolve = file => path.resolve(__dirname, file)
 
 /**
@@ -78,6 +80,12 @@ module.exports = (server, callback) => {
   // 监视构建clientManifest -> 调用update
 
   const clientConfig = require('./webpack.client.config')
+  clientConfig.plugins.push(new webpack.HotModuleReplacementPlugin())
+  clientConfig.entry.app = [
+    'webpack-hot-middleware/client?quiet=true&&reload=true', // 和服务端交互处理热更新一个客户端脚本
+    clientConfig.entry.app
+  ]
+  clientConfig.output.filename = '[name].js' //热更新下确保一致的hash
   const clientCompiler = webpack(clientConfig)
 
   // 将打包后的文件存在内存中
@@ -96,6 +104,9 @@ module.exports = (server, callback) => {
     update()
   })
 
+  server.use(webpackHotMiddleware(clientCompiler, {
+    log: false // 关闭本身的日志
+  }))
   // 将clientDevMiddleware 挂载到 Express
   server.use(clientDevMiddleware)
   return onRead
