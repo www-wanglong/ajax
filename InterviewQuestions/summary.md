@@ -7,3 +7,10 @@
 因为带了key就不是就地复用，在sameNode函数`a.key ==== b.key`,可以避免重复的情况
 ### 1.2 更快
 利用key的唯一性生成map对象来获取对应的节点。
+## 2.['1', '2', '3'].map(parseInt) what & why ?
+输出：[1, NaN, NaN]
+
+相当于['1', '2', '3'].map((number, index) => parseInt(umber, index))
+
+
+parseInt第一个参数是数组，第二个参数要转换的进制
