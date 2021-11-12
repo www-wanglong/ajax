@@ -21,7 +21,7 @@
             - [1.2.10.2. 函数参数](#markdown-header-12102-%E5%87%BD%E6%95%B0%E5%8F%82%E6%95%B0)
             - [1.2.10.3. ref字符串](#markdown-header-12103-ref%E5%AD%97%E7%AC%A6%E4%B8%B2)
             - [1.2.10.4. 获取组件实例](#markdown-header-12104-%E8%8E%B7%E5%8F%96%E7%BB%84%E4%BB%B6%E5%AE%9E%E4%BE%8B)
-    - [1.3. 组件](#markdown-header-13-%E7%BB%84%E4%BB%B6)
+    - [1.3. 组件](#13-%E7%BB%84%E4%BB%B6)
         - [1.3.1. 什么是组件](#markdown-header-131-%E4%BB%80%E4%B9%88%E6%98%AF%E7%BB%84%E4%BB%B6)
         - [1.3.2. 创建组件](#markdown-header-132-%E5%88%9B%E5%BB%BA%E7%BB%84%E4%BB%B6)
             - [1.3.2.1. 创建类组件](#markdown-header-1321-%E5%88%9B%E5%BB%BA%E7%B1%BB%E7%BB%84%E4%BB%B6)
