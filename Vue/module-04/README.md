@@ -61,3 +61,14 @@ mounted生命周期后才能使用$ref
 安装 `npm install -g @vue/cli-service-global`
 
 使用`vue serve`快速查看组件的运行效果
+## 3. Monorepo
+## 4. Storybook
+### 4.1 介绍
+- 可视化的组件展示平台
+### 4.2 安装
+
+## 5. yarn workspaces
+
+## 6. Lerna介绍
+
+## 7. 单元测试
