@@ -33,3 +33,16 @@
 # 2. Composition PAI
 ## 2.1 reactive
 设置响应式数据
+## 2.2 toRefs
+## 2.3 ref
+
+## 2.4 computed
+获取计算属性
+## 2.5 Watch 监听器
+
+## 2.6 WatchEffect
+- 是watch函数的简化版本，也用来监听数据的变化
+- 接收一个函数作为参数，监听函数内部响应式数据的变化
+
+
+

@@ -8,13 +8,13 @@
 </head>
 <body>
   <div id="app">
-    x {{ position.x }}
+    x {{ x }}
     <br>
-    y {{ position.y }}
+    y {{ y }}
   </div>
 
   <script type="module">
-    import { createApp, reactive, onMounted, onUnmounted } from './node_modules/vue/dist/vue.esm-browser.js'
+    import { createApp, reactive, onMounted, onUnmounted, toRefs } from './node_modules/vue/dist/vue.esm-browser.js'
 
     const useMousePosition = () => {
       // props
@@ -37,21 +37,20 @@
         window.removeEventListener('mousemove', update)
       })
 
-      return position
+      // 把响应式的所有属性的转换成响应式
+      return toRefs(position)
     }
 
     //reactive 设置相应
     const app = createApp({
       setup () {
-        const position = useMousePosition()
+        // x,y基本变量
+        const { x,y } = useMousePosition()
         return {
-          position
+          x,
+          y
         }
       },
-
-      mounted () {
-      }
-
 
     })
     console.log(app)
