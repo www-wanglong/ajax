@@ -8,6 +8,7 @@ function parse (str) {
   return value
 }
 
+
 function stringify (obj) {
   let value
   try {
@@ -17,6 +18,7 @@ function stringify (obj) {
   }
   return value
 }
+
 
 export default function useLocalStorage () {
   function setItem (key, value) {
@@ -34,6 +36,6 @@ export default function useLocalStorage () {
 
   return {
     setItem,
-    getItem
+    getItem,
   }
 }
