@@ -331,3 +331,313 @@ function toInt32() {
 
 # 4.语法专题
 ## 4.1 数据类型的转换
+### 4.1.1 `Number()`
+- 调用自身的`valueOf()`方法，
+- 如果不是原始类型的值，还是返回对象，调用`toString()`
+- `Number()`
+### 4.1.2 `String()`
+- `toString()`
+- `valueOf()`
+- `String()`
+### 4.1.3 自动转换为数值
+除了加法运算符`+`有可能把运算子转为字符串，其他运算符都会把运算子自动转成数值
+
+## 4.2 错误处理机制
+- `SyntaxError`对象 语法错误
+- `ReferenceError` 引用一个不存在的变量时发生的错误
+- `RangeError` 值超出有效范围时发生的错误
+- `TypeError` 对象是变量或参数不是预期类型时发生的错误
+
+# 5. 标准库
+## 5.1 Object对象
+### 5.1.1 概述
+- `Object`对象本身的方法
+`Object.print = function (o) { console.log('a') }`
+- `Object`的实例方法
+```JavaScript
+Object.prototype.print = function () {
+  console.log(this)
+}
+
+var obj = new Object()
+obj.print() // Object
+```
+
+### 5.1.2 Object()
+`Object`本身是一个函数，将任意值转为对象。
+
+
+```JavaScript
+var obj = Object()
+// 等同于
+var obj = Object(undefined)
+var obj = Object(null)
+obj instanceof Object //true
+```
+
+如果参数是原始类型的值，`Object`方法将其转为对应的包装对象实例。如果`Object`方法的参数是一个对象，它总是返回该对象，即不用转换。
+```JavaScript
+var arr = []
+var obj = Object(arr)
+obj === arr // trur
+```
+可以写一个判断变量是否为对象的函数
+```JavaScript
+function isObject(value) {
+  return value === Object(value)
+}
+```
+
+### 5.1.2 Object构造函数
+```JavaScript
+// 生成新的对象
+var obj = new Object()
+```
+
+### 5.1.3 Object方法
+- `Object.keys()` 返回对象自身的所有属性名
+- `Object.getOwnPropertyName()` 返回可枚举和不可枚举的属性名
+- `Object.proptotype.hasOwnProperty()` 判断该实例对象是否自身是否具有该属性
+- `Object.getOwnPropertyDescriptor()` 获取对象自身的属性，不能用于继承
+
+## 5.2 属性描述对象
+### 5.2.1 enumerable 可遍历性
+早期`for...in`循环是基于`in`运算符，`in`运算符不管某个属性是对象自身还是继承的，都会返回`true`。
+后来引入可遍历，只有可遍历的属性才能被`for...in`循环遍历，同时还规定`toString`这一类实例对象继承的原生属性，都是不可遍历的。
+
+这三个操作都不会取到`enumerable=false`的属性
+- `for...in`循环
+- `Object.keys`方法
+- `JSON.stringify`方法
+### 5.2.1 对象的拷贝
+需要将一个对象的所有属性，拷贝到另一个对象
+```JavaScript
+// 这个方法，遇到存取器定义的属性 只会拷贝值
+extend({}, {
+  get a() { return 1 }
+})
+var extend = function(to, from) {
+  for (var property in from) {
+    to[property] = from[property]
+  }
+  return to
+}
+```
+可以通过`Object.defineProperty`方法来拷贝属性
+```JavaScript
+var extend = function(to, from) {
+  for (var property in from) { // 会遍历自身属性以及继承的可遍历的属性
+    if (!from.hasOwnProperty(property)) continue;
+    Object.defineProperty(
+      to,
+      property,
+      Object.getOwnPropertyDescriptor(from, property) //只能获取自身的属性
+    );
+
+  }
+  return to;
+}
+extend({}, { get a() { return 1 } })
+```
+
+## 5.3 Array 对象
+Array是JavaScript的原生对象，同时也是一个构造函数
+
+空位读取不到键名
+### 5.3.1 Array.isArray
+判断是否是数组
+
+### 5.3.2 sort()
+默认按照字典顺序。数组会被转为字符串，再按照字典顺序进行比较。
+```JavaScript
+[
+  { age: 12 },
+  { age: 11 },
+  { age: 13 }
+].sort(function (o1, o2) {
+  return o1.age - o2.age
+})
+```
+`sort`还可以接受函数参数，如果该函数的返回值大于0，表示第一个成员排在第二个成员后面。
+
+### 5.3.3 map()
+`map`方法不会跳过`undefined`和`null`，但是会跳过空位。
+
+## 5.4 包装对象
+### 5.4.1 定义
+对象JavaScrip三种原始类型的值（数值、字符串、布尔值），在一定条件下，会自动转为对象，也就是原始类型的包装对象。
+```JavaScript
+var v1 = new Number(1)
+var v2 = new String('abc')
+var v3 = new Boolean(true)
+
+typeof v1 // 'object'
+```
+
+Number、String、Boolean这三个对象作为构造函数使用（new）时，可以将原始类型的值转为对象；作为普通函数使用时，可以将任意类型的值，转为原始类型的值。
+
+### 5.4.2 原始类型与实例对象的自动转换
+某些情况下，原始类型的值会自动当作包装对象调用，即调用包装对象的属性和方法。这时JavaScript引擎会自动将原始类型的值转为包装对象的实例，并在使用后立刻销毁实例。
+
+例如：
+```JavaScript
+var str = 'abc'
+str.length //3
+
+// 等同于
+var strObject = new String(str)
+strObject.length //3
+```
+
+## 5.5 Number对象
+### 5.5.1 toString
+
+`toString`方法接受一个参数，表示输出的进制
+
+## 5.6 String对象
+### 5.6.1 slice()
+不改变原字符串，截取字符串
+### 5.6.2 substring()
+和slice方法类似
+### 5.6.3 substr()
+和slice方法类似
+### 5.6.4 split()
+分割字符串
+
+## 5.7 Math 对象
+- `Math.abs()` 绝对值
+- `Math.ceil()` 向上取整
+- `Math.floor()` 向下取整
+- `Math.max()` 最大值
+- `Math.min()` 最小值
+- `Math.pow()` 指数
+- `Math.sqrt()` 平方根
+- `Math.log()`
+- `Math.round()` 四舍五入
+- `Math.random()` 随机数
+
+## 5.8 Date对象
+
+## 5.9 RegExp 对象
+### 5.9.1 test()
+```JavaScript
+/cat/.test('cats and') //true
+```
+### 5.9.2 exec()
+返回匹配的结果
+```JavaScript
+/x/.exec('x') // ['x']
+```
+
+### 5.9.3 字符串中实例方法
+- String.prototype.match()
+- String.prototype.search()
+- String.prototype.replace()
+- String.prototype.split()
+
+### 5.9.4 元字符
+- 点字符`(.)` ,匹配除回车`(\r)`、换行`(\n)`,分割符以外的所有字符
+- `^`表示字符串的开始位置
+- `$`表示字符串的结束位置
+- `|` 选择符
+### 5.9.5 转义符
+- `\`转义符
+### 5.9.6 特殊字符
+- \cX 表示Ctrl-[X]，其中的X是A-Z之中任一个英文字母，用来匹配控制字符。
+- [\b] 匹配退格键(U+0008)，不要与\b混淆。
+- \n 匹配换行键。
+- \r 匹配回车键。
+- \t 匹配制表符 tab（U+0009）。
+- \v 匹配垂直制表符（U+000B）。
+- \f 匹配换页符（U+000C）。
+- \0 匹配null字符（U+0000）。
+- \xhh 匹配一个以两位十六进制数（\x00-\xFF）表示的字符。
+- \uhhhh 匹配一个以四位十六进制数（\u0000-\uFFFF）表示的 Unicode 字符。
+### 5.9.7 字符类
+
+-  `[]` ,`[xyx]`表示`x`、`y`、z`之中任意一个匹配
+  ```JavaScript
+  /[abc]/.test('apple') //true
+  ```
+- 脱字符`^`, 除了,如： [^xyz]表示除了x、y、z之外都可以匹配
+- 连字符`-`, `/[a-z]/`
+### 5.9.7 预定义模式
+- `\d`,相当于 `[0-9]`
+- `\D`, 相当于 `[^0-9]`
+- `\w`, 相当于`[A-Za-z0-9_]`
+- `\W`, 相当于`[^A-Za-z0-9_]`
+- `\s`, 匹配空格， 相当于[\t\r\n\v\f]
+- `\S`，非空格字符串
+### 5.9.7 重复类
+- `{}`, `{n}`表示欠好重复`n`次
+- `{n,}`便是至少重复`n`次
+- `{n,m}`表示重复不少于`n`次，不多于`m`次
+### 5.9.8 量词符
+- `?` 表示某个模式出现0次或1次，等同于`{0, 1}`
+- `*` 表示某个模式出现0次或多次，等同于`{0,}`
+- `+` 表示某个模式出现1次或多次，等同于`{1,}`
+### 5.9.9 贪婪模式 加个`?`
+```JavaScript
+// 最大可能匹配
+'aaa'.match(/a+/) // ['aaa']
+
+// 改为贪婪模式
+'aaa'.match(/a+？/) // ['a']
+```
+### 5.9.10 修饰符
+- `g`修饰符，全局匹配
+  每次都是从上一次匹配成功处，开始向后匹配
+  ```JavaScript
+  var regex = /b/g;
+  var str = 'abba';
+
+  regex.test(str); // true
+  regex.test(str); // true
+  regex.test(str); // false
+  ```
+- `i`修饰符 忽略大小写
+  ```JavaScript
+  /abc/i.test('ABC') //true
+  ```
+- `m`修饰符
+
+  表示多行模式，会修改`^`和`$`的行为
+  ```JavaScript
+  /world$/.test('hello world\n') // false
+  /world$/m.test('hello world\n') // true
+  ```
+### 5.9.11 组匹配
+```JavaScript
+var m = 'abcabc'.match(/(.)b(.)/);
+// ['abcabc', 'a', 'c']
+```
+还可以使用`\n`引用括号匹配的内容，n时从1开始的自然数
+```JavaScript
+/(.)b(.)\1b\2/.test("abcabc")
+// true
+```
+
+还可以嵌套
+```JavaScript
+/y((..)\2)\1/.test('yabababab') // true
+```
+
+### 5.9.12 非捕获组
+`(?:x)`,不返回该组匹配内容，即匹配的结果中不计入这个括号
+```JavaScript
+var m = 'abc'.match(/(?:.)b(.)/);
+m // ["abc", "c"]
+```
+
+### 5.9.13 先行断言
+`x(?=y)`, `x`只有在y前面匹配，`y`不会被计入结果
+```JavaScript
+var m = 'abc'.match(/b(?=c)/);
+// [b]
+```
+### 5.9.14 先行否定断言
+`x(?!y)`, `x`只有不在`y`前面才匹配，`y`不会被计入返回结果
+```JavaScript
+/\d+(?!\.)/.exec('3.14')
+// ["14"]
+```
