@@ -224,7 +224,7 @@ var args = Array.prototype.slice.call(arguments)
 定义在一个函数内部的函数。它的最大特点是可以’记住‘诞生的环境。
 
 作用：
- -  可以读取函数内部的变量
+ - 可以读取函数内部的变量
  - 让这些变量始终保持在内存中
  ```JavaScript
   function createIncrement(start) {
@@ -641,3 +641,86 @@ var m = 'abc'.match(/b(?=c)/);
 /\d+(?!\.)/.exec('3.14')
 // ["14"]
 ```
+
+## 5.10 JSON对象
+### 5.10.1
+`JSON`对象是`JavaScript`的原生对象，用来处理JSON格式数据。
+### 5.10.2 JSON.stringify()
+如果对象的属性是 `undefined`、函数或XML对象，该属性会被`JSON.stringify()`过滤
+
+
+如果数组的成员是`null`和函数，它们都会被转成`null`;
+
+正则对象会被转成空对象；
+```JavaScript
+JSON.stringify(/foo/)
+```
+
+JSON.stringify方法会忽略对象不可遍历的方法；
+
+### 5.10.3 JSON.stringify()第二个参数
+- 指定需要转成字符串的属性，对数字无效
+- 还可以是个函数，用来改JSON.stringify的返回值
+```JavaScript
+function f(key, value) {
+  if (typeof value === "number") {
+    value = 2 * value;
+  }
+  return value;
+}
+
+JSON.stringify({ a: 1, b: 2 }, f)
+// '{"a": 2,"b": 4}'
+```
+
+### 5.10.3 JSON.stringify()第三个参数
+增加返回字符串的可读性
+
+### 5.10.4 参数对象的 toJSON 方法
+如果参数对象定义了`toJSON`方法，`JSON.stringify()`会直接使用`toJSON`方法
+
+# 6. 面向对象编程
+
+## 6.1 实例对象和new命令
+
+### 6.1.1 构造函数
+`constructor`，就是专门用来生成实例对象的函数。一个构造函数，可以生成多个实例对象，这些实例队形都有相同的结构。
+
+
+构造函数的两个特点：
+- 函数体内部使用`this`关键字，代表所要生成的对象实例
+- 生成对象的时候，必须使用`new`命令
+
+### 6.1.2 new命令的原理
+- 1. 创建一个空对象，作为将要返回的对象实例
+- 2. 将这个空对象的原型，指向构造函数的`prototype`书香
+- 3. 将这个控对象赋值给函数内部的`this`关键字
+- 4. 开始执行构造函数内部的代码
+
+如果构造函数内部有return语句，而且return后面跟着一个对象，new命令会返回return语句指定的对象；否则，就会不管return语句，返回this对象。
+```JavaScript
+function _new (constructor, params) {
+  var args = [].splice.call(arguments)
+  // 去除构造函数
+  var constructor = args.shift()
+  // 创建一个空对象
+  var context = Object.create(constructor.prototype)
+  // 执行构造函数
+  var result = constructor.apply(context, args)
+
+  return (typeof result === 'object' && result != null) ? result : context
+
+}
+```
+
+### 6.1.3 Object.create()创建实例对象
+
+## 6.2 this关键字
+`this`就是属性或方法当前的对象。
+
+### 6.2.1 对象的方法
+如果对象的方法里面包含`this`，`this`的指向就是方法运行时所在的对象。
+该方法赋值给另一个对象，就会改变`this`的指向
+- call
+- apply
+- bind
