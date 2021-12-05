@@ -724,3 +724,38 @@ function _new (constructor, params) {
 - call
 - apply
 - bind
+
+## 6.3 对象的继承
+
+### 6.3.1 构造函数的缺点
+同一个构造函数的多个实例之间，无法共享属性，从而造成了系统资源的浪费。
+### 6.3.2 prototype属性的作用
+原型对象的所有属性和方法，都能被实例对象共享。
+
+
+原型对象的作用，就是定义所有实例对象共享的属性和方法。
+### 6.3.3 原型链
+JavaScript规定，所有对象都有自己的原型对象。一方面，任何一个对象都可以充当其他对象的原型；另一方面，由于原型对象也是对象，所有它也有自己的原型。因此，就形成‘原型链’。
+
+
+所有对象都有继承了Object.prototype的属性，
+
+
+`Object.prototype`的原型是null
+
+### 6.3.4 constructor属性
+
+`prototype`对象有一个`constructor`属性，默认指向`prototype`对象所在的构造函数
+
+### 6.3.5 instanceof运算符
+`instanceof`运算符，表示对象是否为某个构造函数的实例。本质是检测右边构建函数的原型对象，是否在左边对象的原型链上。
+
+## 7. Object对象相关方法
+### 7.1 Object.getPertotypeOf()
+获取对象的原型
+### 7.2 Object.setPertotypeOf()
+设置对象的原型
+### 7.3 Object.create()
+该方法接受一个对象作为参数，然后以它为原型，返回一个实例对象。该实例对象完全继承对象的属性。
+### 7.4 Object.prototype.__proto__
+返回该对象的原型。 即构造函数的`prototype`属性，该属性可读写。

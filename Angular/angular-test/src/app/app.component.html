@@ -1,4 +1,36 @@
-<div>
-  App works
-  <app-layout></app-layout>
-</div>
+<button class="btn btn-primary">按钮</button>
+
+<div *ngIf="list.length === 0; then noData else listData"></div>
+
+<ng-template #noData>
+  没有数据
+</ng-template>
+
+<ng-template #listData>
+  <ul>
+    <li *ngFor="
+      let item of list;
+      let i = index;
+      let isOdd = odd;
+      trackBy: inentify
+    "
+      [ngClass]="{odd: isOdd}"
+    >
+      <p>
+        {{ item.name }}
+        索引{{ i }}
+      </p>
+    </li>
+  </ul>
+</ng-template>
+
+<div [appHover]="{bgColor: 'red'}">appHover</div>
+
+<div>{{ paragraph | summary:20 }}</div>
+
+<app-person (sendData)="getData($event)" name="张" age="20"></app-person>
+
+
+<app-child [name]="username">
+  <div #box>hello</div>
+</app-child>
