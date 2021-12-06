@@ -1,4 +1,4 @@
-import { AfterContentInit, AfterViewInit, Component, ContentChild, ElementRef, Input, OnInit, QueryList, ViewChild, ViewChildren } from '@angular/core';
+import { AfterContentInit, AfterViewInit, Component, ContentChild, ElementRef, Input, OnChanges, OnInit, QueryList, ViewChild, ViewChildren } from '@angular/core';
 import { TestService } from '../test.service';
 
 @Component({
@@ -7,7 +7,7 @@ import { TestService } from '../test.service';
   styles: [
   ]
 })
-export class ChildComponent implements OnInit, OnInit, AfterContentInit, AfterViewInit {
+export class ChildComponent implements OnInit, OnInit, AfterContentInit, AfterViewInit, OnChanges {
 
   @Input("name") name: string = ''
   @ContentChild("box") box: ElementRef<HTMLDivElement> | undefined
@@ -33,6 +33,10 @@ export class ChildComponent implements OnInit, OnInit, AfterContentInit, AfterVi
   ngAfterViewInit(): void { //试图初始化完成
     //console.log('ngAfterViewInit')
     console.log(this.p)
+  }
+
+  ngOnChanges() {
+    console.log('OnChanges')
   }
 
 }

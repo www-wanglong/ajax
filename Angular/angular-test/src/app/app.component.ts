@@ -1,4 +1,6 @@
 import { AfterViewInit, Component, ElementRef, QueryList, ViewChild, ViewChildren } from '@angular/core';
+import { FormControl, FormGroup } from '@angular/forms';
+import { TestService } from './test.service';
 
 interface List {
   id: number,
@@ -11,6 +13,12 @@ interface List {
 })
 export class AppComponent {
 
+
+  contactForm: FormGroup = new FormGroup({
+    username: new FormControl(),
+    phone: new FormControl()
+  })
+
   username: string = 'long'
 
   paragraph: string = 'xxx'
@@ -22,6 +30,10 @@ export class AppComponent {
       id: 2, name: '三'
     },
   ]
+
+  constructor (private testService: TestService) {
+    console.log('testService', this.testService)
+  }
 
   // @ViewChild("paragraph") paragraph: ElementRef<HTMLParagraphElement> | undefined
 
@@ -41,6 +53,10 @@ export class AppComponent {
 
   inentify (index: number, item: List) {
 
+  }
+
+  change () {
+    this.username = 'lisi'
   }
 
 }
