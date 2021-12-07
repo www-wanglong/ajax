@@ -1,0 +1,11 @@
+<form [formGroup]="contactForm" (submit)="onSubmit()">
+  <input type="text" formControlName="name" />
+  <div *ngIf="name.touched && name.invalid && name.errors">
+    <div *ngIf="name.errors['required']">请填写名字</div>
+    <div *ngIf="name.errors['cannotContainSpace']">不能有空格</div>
+    <div *ngIf="name.errors['shouldBeUnique']">名字已经存在</div>
+
+  </div>
+  <div *ngIf="name.pending">正在验证</div>
+  <button>提交</button>
+</form>
