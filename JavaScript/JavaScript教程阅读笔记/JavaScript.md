@@ -750,12 +750,46 @@ JavaScript规定，所有对象都有自己的原型对象。一方面，任何�
 ### 6.3.5 instanceof运算符
 `instanceof`运算符，表示对象是否为某个构造函数的实例。本质是检测右边构建函数的原型对象，是否在左边对象的原型链上。
 
-## 7. Object对象相关方法
-### 7.1 Object.getPertotypeOf()
+## 6.4. Object对象相关方法
+### 6.4.1 Object.getPertotypeOf()
 获取对象的原型
-### 7.2 Object.setPertotypeOf()
+### 6.4.2 Object.setPertotypeOf()
 设置对象的原型
-### 7.3 Object.create()
+### 6.4.3 Object.create()
 该方法接受一个对象作为参数，然后以它为原型，返回一个实例对象。该实例对象完全继承对象的属性。
-### 7.4 Object.prototype.__proto__
+### 6.4.4 Object.prototype.__proto__
 返回该对象的原型。 即构造函数的`prototype`属性，该属性可读写。
+### 6.4.5 Object.getOwnPropertyNames()
+返回对象本身的所有属性的键名，不包含继承的属性键名。
+### 6.4.6 Object.prototype.hasOwnProperty()
+判断某个属性定义在对象自身，还是定义在原型链上。
+### 6.4.7 in运算符和for...in循环
+`in`，不区分自身的属性还是继承的属性
+`for...in`可获得所有可遍历属性
+### 6.4.8对象的拷贝
+- 确保拷贝后的对象，与原对象具有同样的原型
+- 确保拷贝后的对象，与原对象具有同样的实例属性
+```JavaScript
+function copyObject(obj) {
+  var result = Object.create(obj.getPrototypeOf(onj))
+  copyOwnPropertiesFrom(result, obj)
+  return result
+}
+
+function copyOwnPropertiesFrom(target, source) {
+  // copy对象的实例属性
+  Object.getOwnPropertyNames(source)
+    .forEach(function(propKey) {
+      var value = Object.getOwnPropertyDescriptor(source, propKey)
+      Object.defineProperty(target, propKey, value)
+    })
+  return value
+}
+```
+
+# 7. 异步操作
+
+## 7.1 概述
+JavaScript只在一个线程上运行。
+
+事件循环：只要同步任务执行完了，引擎就会去检查挂起来的异步任务，是不是可以进主线程，一旦异步任务重新进入主线程，就会执行回调函数。

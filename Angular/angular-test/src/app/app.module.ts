@@ -21,36 +21,9 @@ import { RouterModule, Routes } from '@angular/router';
 import { NewsComponent } from './pages/news/news.component';
 import { CompanyComponent } from './pages/company/company.component';
 import { IndustryComponent } from './pages/industry/industry.component';
+import { AppRoutingModule } from './app-routing.module';
 
-const routes: Routes = [
-  {
-    path: 'home',
-    component: HomeComponent
-  },
-  {
-    path: 'about/:name',
-    component: AboutComponent
-  },
-  {
-    path: 'news',
-    component: NewsComponent,
-    children: [
-      {
-        path: 'company',
-        component: CompanyComponent,
-      },
-      {
-        path: 'industry',
-        component: IndustryComponent
-      }
-    ]
-  },
-  {
-    path: '',
-    redirectTo: 'home',
-    pathMatch: 'full'
-  }
-]
+
 @NgModule({
   declarations: [
     AppComponent,
@@ -75,7 +48,7 @@ const routes: Routes = [
     DemoModule,
     FormsModule,
     ReactiveFormsModule,
-    RouterModule.forRoot(routes, { useHash: true })
+    AppRoutingModule
   ],
   providers: [],
   bootstrap: [AppComponent]
