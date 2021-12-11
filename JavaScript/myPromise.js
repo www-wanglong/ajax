@@ -27,4 +27,4 @@ function Promise(execute) {
   }
 }
 
-Promise.prototype.
+Promise.prototype
