@@ -1,17 +1,28 @@
 import axios from 'axios'
 import { range, fromEvent, from } from 'rxjs'
-import { distinctUntilChanged, map, switchMap, throttleTime, debounceTime, takeUntil } from 'rxjs/operators'
+import { distinctUntilChanged, map, switchMap, throttleTime, debounceTime, takeUntil, concatMap } from 'rxjs/operators'
 
-const search = document.getElementById('search')
+const btn = document.getElementById('btn')
 
-fromEvent(search, 'keyup')
+// 串联
+fromEvent(btn, 'click')
   .pipe(
-    debounceTime(1000),
-    map(event => event.target.value),
-    distinctUntilChanged(),
-    switchMap(keyword => from(axios.get(`https://jsonplaceholder.typicode.com/posts?q=${keyword}`)))
+    concatMap(event => from()),
+    concatMap(token => from())
   )
   .subscribe(console.log)
+
+
+// const search = document.getElementById('search')
+
+// fromEvent(search, 'keyup')
+//   .pipe(
+//     debounceTime(1000),
+//     map(event => event.target.value),
+//     distinctUntilChanged(),
+//     switchMap(keyword => from(axios.get(`https://jsonplaceholder.typicode.com/posts?q=${keyword}`)))
+//   )
+//   .subscribe(console.log)
 
 // const box = document.getElementById('box')
 

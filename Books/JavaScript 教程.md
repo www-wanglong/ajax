@@ -397,9 +397,20 @@ var obj = new Object()
 ### 5.1.3 Object方法
 - `Object.keys()` 返回对象自身的所有属性名
 - `Object.getOwnPropertyName()` 返回可枚举和不可枚举的属性名
-- `Object.proptotype.hasOwnProperty()` 判断该实例对象是否自身是否具有该属性
 - `Object.getOwnPropertyDescriptor()` 获取对象自身的属性，不能用于继承
-
+- `Object.prototype.hasOwnProperty()` 判断该实例对象是否自身是否具有该属性
+- `Object.prototype.toString` 返回一个对象的字符串形式，默认情况下返回类型字符串
+### 5.1.4 toString()判断数据类型
+```JavaScript
+Object.prototype.toString.call(2) // "[object Number]"
+Object.prototype.toString.call('') // "[object String]"
+Object.prototype.toString.call(true) // "[object Boolean]"
+Object.prototype.toString.call(undefined) // "[object Undefined]"
+Object.prototype.toString.call(null) // "[object Null]"
+Object.prototype.toString.call(Math) // "[object Math]"
+Object.prototype.toString.call({}) // "[object Object]"
+Object.prototype.toString.call([]) // "[object Array]"
+```
 ## 5.2 属性描述对象
 ### 5.2.1 enumerable 可遍历性
 早期`for...in`循环是基于`in`运算符，`in`运算符不管某个属性是对象自身还是继承的，都会返回`true`。
@@ -795,4 +806,20 @@ JavaScript只在一个线程上运行。
 事件循环：只要同步任务执行完了，引擎就会去检查挂起来的异步任务，是不是可以进主线程，一旦异步任务重新进入主线程，就会执行回调函数。
 
 ## 7.2 Promise
-`promise`得回调函数不是正常的异步任务，而是微任务。它们的区别在一，正常任务追加到下一轮事件循环，微任务追加到本轮时间循环。
+`promise`得回调函数不是正常的异步任务，而是微任务。它们的区别在于，正常任务追加到下一轮事件循环，微任务追加到本轮时间循环。
+
+# 8. DOM
+## 8.1 DOM概述
+### 8.1.1 DOM
+DOM: JavaScript操作网页的接口，全称‘文档对象模型’。它的作用是将网页转为一个JavaScript对象，从而可以用脚本进行各种操作
+### 8.1.2 节点
+DOM的最小组成单位是节点。
+- Document
+- DOcumentType
+- Element
+- Attribute
+- Text
+- Comment
+- DocmentFragment
+# 9. 事件
+# 10. 浏览器模型

@@ -18,10 +18,18 @@ import { AboutComponent } from './pages/about/about.component';
 import { LayoutComponent } from './pages/layout/layout.component';
 import { NavigationComponent } from './pages/navigation/navigation.component';
 import { RouterModule, Routes } from '@angular/router';
+import { HttpClientModule, HTTP_INTERCEPTORS } from '@angular/common/http';
 import { NewsComponent } from './pages/news/news.component';
 import { CompanyComponent } from './pages/company/company.component';
 import { IndustryComponent } from './pages/industry/industry.component';
 import { AppRoutingModule } from './app-routing.module';
+import { AuthInterceptor } from './auth.interceptor';
+import { StoreModule } from '@ngrx/store';
+import { reducers, metaReducers } from './store';
+import { StoreDevtoolsModule } from '@ngrx/store-devtools';
+import { environment } from '../environments/environment';
+import { EffectsModule } from '@ngrx/effects';
+import { CounterEffects } from './store/effects/counter.effects';
 
 
 @NgModule({
@@ -45,31 +53,16 @@ import { AppRoutingModule } from './app-routing.module';
   ],
   imports: [
     BrowserModule,
-    DemoModule,
+
     FormsModule,
     ReactiveFormsModule,
-    AppRoutingModule
+    AppRoutingModule,
+    HttpClientModule,
+    StoreModule.forRoot(reducers, { metaReducers }),
+    !environment.production ? StoreDevtoolsModule.instrument() : [],
+    EffectsModule.forRoot([CounterEffects])
   ],
-  providers: [],
+
   bootstrap: [AppComponent]
 })
 export class AppModule { }
-
-class MailService {
-
-}
-
-const injector = ReflectiveInjector.resolveAndCreate([
-  {
-    provide: MailService,
-    useValue: {
-      name: 'zhang'
-    }
-  }
-])
-
-
-const mailService1 = injector.get(MailService)
-const mailService2 = injector.get(MailService)
-
-console.log(mailService1)

@@ -7,15 +7,11 @@ import { NewsComponent } from './pages/news/news.component';
 import { CompanyComponent } from './pages/company/company.component';
 import { IndustryComponent } from './pages/industry/industry.component';
 import { AuthGuardGuard } from './guards/auth-guard.guard';
-import { GetNameResolver } from './guards/get-name.resolver';
 
 const routes: Routes = [
   {
     path: 'home',
-    component: HomeComponent,
-    resolve: {
-      name: GetNameResolver
-    }
+    component: HomeComponent
   },
   {
     path: 'about/:name',

@@ -4,7 +4,6 @@ import {
   RouterStateSnapshot,
   ActivatedRouteSnapshot
 } from '@angular/router';
-import { resolve } from 'dns';
 import { Observable, of } from 'rxjs';
 
 @Injectable({
