@@ -1,0 +1,19 @@
+<div class="container mt-4">
+  <input
+    #AddTodoInput
+    type="text"
+    class="form-control"
+    placeholder="请添加任务"
+  />
+
+  <ul class="list-group">
+    <li
+      @slide
+      class="list-group-item d-flex align-items-center"
+    >
+      任务名称
+      <button type="button" class="btn btn-danger btn-sm">删除</button>
+    </li>
+  </ul>
+
+</div>

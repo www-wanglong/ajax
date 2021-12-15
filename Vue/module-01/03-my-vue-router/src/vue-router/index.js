@@ -72,6 +72,7 @@ export default class VueRouter {
       methods: {
         clickHandler(e) {
           history.pushState({}, '', this.to);
+          console.log(this)
           this.$router.data.current = this.to
           e.preventDefault();
         }
