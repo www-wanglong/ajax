@@ -2,7 +2,7 @@ import { AfterViewInit, Component, ElementRef, ViewChild } from '@angular/core';
 import { Store } from '@ngrx/store'
 import { AppState } from './store';
 import { filter, fromEvent, map } from 'rxjs';
-import { addTodo } from './store/actions/todo.actions';
+import { addTodo, deleteTodo } from './store/actions/todo.actions';
 import { animate, style, transition, trigger } from '@angular/animations';
 
 @Component({
