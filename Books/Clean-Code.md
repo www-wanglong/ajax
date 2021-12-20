@@ -72,3 +72,65 @@ Say what you mean.Mean what you say.
 
 ## 2.14 使用解决方案领域名称
 只有程序员才会读你的代码。给这些事取个技术性的名称。
+
+## 2.15 使用源自所涉及问题领域的名称
+如果不能用程序员熟悉的术语来给手头的工作命名，就采用从所涉及问题的领域而来的名称。
+
+## 2.16 添加有意义的语境
+需要用有良好命名的类、函数或名称空间来放置名称
+
+## 2.17 不要添加没有用的语境
+## 2.18 总结
+# 3. 函数
+## 3.1 短小
+## 3.2 只做一件事
+```Java
+public static String testableHtml(PageData pageData, boolean includeSuiteSetup) throws Exception {
+  WikiPage wikiPage = pageData.getWikiPage();
+  StringBuffer buffer = new StringBuffer();
+  if (pageData.hasAttribute("Test")) {
+    if (includeSuiteSetup) {
+      WikiPage suiteSetup =PageCrawlerImpl.getInheritedPage(SuiteResponder.SUITE_SETUP_NAME, wikiPage);
+      if (suiteSetup != null) {
+        WikiPagePath pagePath = suiteSetup.getPageCrawler().getFullPath(suiteSetup);
+        String pagePathName = PathParser.render(pagePath);
+        buffer.append("!include -setup .")
+              .append(pagePathName)
+              .append("\n");
+      }
+    }
+    WikiPage setup =PageCrawlerImpl.getInheritedPage("SetUp", wikiPage);
+    if (setup != null) {
+      WikiPagePath setupPath = wikiPage.getPageCrawler().getFullPath(setup);
+      String setupPathName = PathParser.render(setupPath);
+      buffer.append("!include -setup .")
+            .append(setupPathName)
+            .append("\n");
+    }
+  }
+  buffer.append(pageData.getContent());
+  if (pageData.hasAttribute("Test")) {
+    WikiPage teardown = PageCrawlerImpl.getInheritedPage("TearDown", wikiPage);
+    if (teardown != null) {
+      WikiPagePath tearDownPath = wikiPage.getPageCrawler().getFullPath(teardown);
+      String tearDownPathName = PathParser.render(tearDownPath);
+      buffer.append("\n")
+            .append("!include -teardown .")
+            .append(tearDownPathName)
+            .append("\n");
+    }
+    if (includeSuiteSetup) {
+      WikiPage suiteTeardown = PageCrawlerImpl.getInheritedPage(SuiteResponder.SUITE_TEARDOWN_NAME,wikiPage);
+      if (suiteTeardown != null) {
+        WikiPagePath pagePath = suiteTeardown.getPageCrawler().getFullPath(suiteTeardown);
+        String pagePathName = PathParser.render(pagePath);
+        buffer.append("!include -teardown .")
+              .append(pagePathName)
+              .append("\n");
+      }
+    }
+  }
+  pageData.setContent(buffer.toString());
+  return pageData.getHtml();
+}
+```
