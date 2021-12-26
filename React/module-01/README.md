@@ -82,7 +82,7 @@ React使用组件的方式构建用户界面。
 ## 1.2. JSX语法
 在React中使用JSX语法描述用户界面，它是一种Javascript语法扩展。
 
-在React代码执行之前，Babel会讲JSX语法转化为标准的JavsScript API。
+在React代码执行之前，Babel会讲JSX语法转化为标准的JavScript API。
 
 JSX语法就是一种语法糖（React.createElement），让开发人员使用更加舒服的代码构建用户界面。
 ### 1.2.1. 在JSX中使用表达式
