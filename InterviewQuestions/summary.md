@@ -19,12 +19,12 @@ parseInt第一个参数是数组，第二个参数要转换的进制
 ### 3.1 防抖
 > 对于高频的操作，只识别一次点击
 - 思路：每次触发事件时都取消之前的延时调用方法
-```
+```JavaScript
  /**  防抖函数 */
  function debounce (fn, wait) {
    let timer = null
    return function () {
-     clearTimeout(timer)
+      clearTimeout(timer)
       timer = setTimeout(() => {
         fn.apply(this, arguments)
       }, wait)
@@ -34,10 +34,10 @@ parseInt第一个参数是数组，第二个参数要转换的进制
 ### 3.2 节流
 > 高频事件触发，可以设置频率。
 - 思路：每次触发事件时都判断是否有等待执行的延时函数
-```
+```JavaScript
 /** 节流函数 */
 function throttle (fn, wail) {
-  le canRun = true;
+  let canRun = true;
   return function () {
     if (!canRun) {
        return;
@@ -209,3 +209,82 @@ JavaScript是单线程运行，事实上，JavaScript引擎有多个线程，单
 
 render函数:
 - 1. 跟据tagName生成父标签。读取props,设置属性，如果有content，设置innerHtml或innerText
+- 2. 如果存在子元素，遍历子元素递归调用`render`方法，将生成的子元素依次添加到父元素中，并返回跟元素。
+
+## 17. React组件之间通信方式？
+- 1. 父子组件， 父->子通过`props`,子->父用`callback`回调
+- 2. Context可以跨层级传递数据
+- 3. 项目复杂使用Redux、Mobx等全局状态管理
+
+
+## 18. 如何解析JSX
+调用React.createElement函数创建对象
+
+## 19. 生命周期有哪几种，分别是在什么阶段做哪些事情？为什么要废弃一些生命周期
+
+### 19.1 挂载过程
+- componentWillMount
+还没有渲染DOM
+- componentDidMount
+组件第一个渲染完成，dom节点生成
+
+### 19.2 更新
+- componentWillReceiveProps(nextProps)
+
+- shouldComponentUpdate(nextProps,nextState)
+ 1. 主要用于性能优化（部分更新）
+ 2. 唯一用于控制组件重新渲染的生命周期 return false
+ 3. 因为react父组件的重新渲染会导致所有子组件的重新渲染
+- componentWillUpdate
+- componentDidUpdate
+
+### 19.3 卸载
+- componentWillUnmount
+
+### 19.4 新的生命周期
+- getDerivedStateFromProps(nextProps, prevState)
+
+代替componentWillReceiveProps。老版本中的`componentWillReceiveProps`方法判断前后两个props是否相同，不同将新的props更新到state上去。这样做一来会破坏state数据的单一数据源，导致组件的状态变得不可预测，另一方面也会增加组件的重绘次数。
+
+- getSnapshotBeforeUpdate()
+代替componentWillUpdate
+
+## 20 `setState`是同步还是异步的
+- 1. `setState`只在合成事件和钩子函数中是 异步 的，在原生事件和`setTimeout`中都是同步的
+- 2. `setState`的 异步 并不是说内部由异步代码实现，其实本身执行的过程和代码都是同步的，只是合成事件和钩子函数的调用顺序在更新之前，导致在合成事件和钩子函数汇总没法立马拿到更新后的值，形成了所谓的 异步，当然可以通过第二个参数中的回调拿到更新后的结果
+
+## 21 Redux、React-Redux
+### 21.1 Redux的实现流程
+用户页面行为触发一个Action，然后Store调用Reducer，并且传入两个参数：`State`和收到的Action。
+
+`Reducer`会返回型的State。每当state更新之后，view会根据state触发重新渲染。
+
+### 21.2 React-Redux
+`Provider`:从最外部封装了整个应用，并向`connect`模块传递`store`。
+
+`connect`:
+- 1. 包装原组件，将`state`和`action`通过`props`的方式传入到原组件内部。
+- 2. 监听`store tree`的变化，使其包装的原组件可以响应`state`变化
+
+## 22 编程算法题
+> 用 JavaScript 写一个函数，输入 int 型，返回整数逆序后的字符串。如：输入整型 1234，返回字符串“4321”。要求必须使用递归函数调用，不能用全局变量，输入函数必须只有一个参数传入，必须返回字符串。
+```JavaScript
+function reverseNumberToString (number) {
+  let str = number.toString()
+  if (str.length === 1) {
+    return str
+  }
+  return reverseNumberToString(str.substring(1)) + str.substring(0,1)
+
+}
+function reverseNumberToString (number) {
+  let num1 = number / 10
+  let num2 = number % 10
+  if (num1 < 1) {
+    return number
+  }
+  return `${num2}${reverseNumberToString(Math.floor(num1))}`
+}
+
+```
+
