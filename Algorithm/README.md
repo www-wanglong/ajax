@@ -105,6 +105,31 @@ var reverseList = function(head) {
     return prev
 };
 ```
+### 2.4.4 复杂链表的复制
+输入一个复杂链表（每个节点中有节点值，以及两个指针，一个指向下一个节点，另一个特殊指针执行任意一个节点），返回结果为复制后复杂链表的head
+### 2.4.5 合并两个排序的链表
+解题思路
+![image](./images/two-head.png)
+```JavaScript
+function merge(pHead1, pHead2) {
+  if (!pHead1) {
+    return pHead2
+  }
+  if (!pHead2) {
+    return pHead1
+  }
+
+  let head
+  if (pHead1.val < pHead2.val) {
+    head = pHead1
+    head.next = merge(pHead1.next, pHead2)
+  } else {
+    head = pHead2
+    head.next = merge(pHead1, pHead2.next)
+  }
+  return head
+}
+```
 ## 2.5 数据结构 - 数组
 ## 2.6 数据结构 - 栈和队列
 ## 2.7 数据结构 - 哈希表
