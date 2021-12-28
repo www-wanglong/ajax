@@ -36,7 +36,7 @@ parseInt第一个参数是数组，第二个参数要转换的进制
 - 思路：每次触发事件时都判断是否有等待执行的延时函数
 ```JavaScript
 /** 节流函数 */
-function throttle (fn, wail) {
+function throttle (fn, wait) {
   let canRun = true;
   return function () {
     if (!canRun) {
@@ -44,7 +44,7 @@ function throttle (fn, wail) {
      }
      setTimeout(() => {
        fn.apply(this, arguments)
-     }, 500)
+     }, wait)
   }
 }
 ```
@@ -82,6 +82,15 @@ function throttle (fn, wail) {
 - 代码结构清晰，易于阅读，利于开发和维护
 - 方便其他设备解析根据语义渲染网页
 - 有利于搜索引擎优化（SEO）
+
+<!-- 面试官下午好 我叫王龙，今天很高心。
+我从事前端开发3年多，使用过angular、react、vue开发过项目
+有过两段工作经历，写过后端，做个一些h5项目、pc管理系统、微信小程序、app端项目。
+
+平时喜欢逛一些技术想去，比如:github、csdn之类的，看到一些比较好的技术或项目。也会练习练习，记录自己的学习心得。
+
+我的性格比较温和，平时开发时比较喜欢全心全意的投入开发，对代码有极高的要求。 -->
+
 
 ## 6. css3新特性
 ### 6.1 新的选择器
@@ -250,7 +259,7 @@ render函数:
 代替componentWillUpdate
 
 ## 20 `setState`是同步还是异步的
-- 1. `setState`只在合成事件和钩子函数中是 异步 的，在原生事件和`setTimeout`中都是同步的
+- 1. `setState`只在合成事件和钩子函数中是 异步 的（React控制范围之内），在原生事件和`setTimeout`（调用异步执行环境执行）中都是同步的
 - 2. `setState`的 异步 并不是说内部由异步代码实现，其实本身执行的过程和代码都是同步的，只是合成事件和钩子函数的调用顺序在更新之前，导致在合成事件和钩子函数汇总没法立马拿到更新后的值，形成了所谓的 异步，当然可以通过第二个参数中的回调拿到更新后的结果
 
 ## 21 Redux、React-Redux

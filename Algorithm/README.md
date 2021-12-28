@@ -65,6 +65,46 @@ var tree = {
 - 需要遍历才能查询到元素，查询慢
 - 插入元素只需要断开链接重新赋值，插入快
 ### 2.4.2 从尾到头打印链表
+```JavaScript
+function printListFromTailToHead (head) {
+  const array = []
+  while (head) {
+    array.unshift(head.val)
+    head = head.next
+  }
+  return array
+}
+```
+### 2.4.3 反转链表
+
+```JavaScript
+node1 = {
+  val: 1,
+  next: node2
+}
+
+node2 = {
+  val: 2,
+  next: node3
+}
+
+node3 = {
+  val: 3,
+  next: null
+}
+// 让当前node节点的next指向上一个
+var reverseList = function(head) {
+    var prev = null
+    var current = head
+    while (current) {
+      let next = current.next
+      current.next = prev
+      prev = current
+      current = next
+    }
+    return prev
+};
+```
 ## 2.5 数据结构 - 数组
 ## 2.6 数据结构 - 栈和队列
 ## 2.7 数据结构 - 哈希表

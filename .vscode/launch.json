@@ -5,23 +5,10 @@
   "version": "0.2.0",
   "configurations": [
     {
-      "type": "extensionHost",
-      "request": "launch",
-      "name": "Launch Extension",
-      "runtimeExecutable": "${execPath}",
-      "args": [
-        "--extensionDevelopmentPath=${workspaceFolder}"
-      ],
-      "outFiles": [
-        "${workspaceFolder}/out/**/*.js"
-      ],
-      "preLaunchTask": "npm"
-    },
-    {
-      "type": "node",
+      "type": "pwa-node",
       "request": "launch",
       "name": "Launch Program",
-      "program": "${workspaceFolder}/lg-learn/part2/module-02/21-wp-weite-entry-location/run.js"
+      "program": "${workspaceFolder}/NodeJs/event-emitter/03-event-emittrt-source-code.js"
     }
   ]
 }
