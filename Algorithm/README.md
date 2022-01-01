@@ -2,6 +2,8 @@
 
 https://juejin.cn/post/6844903919722692621#heading-14
 
+http://www.conardli.top/docs/dataStructure/
+
 # 一、时间复杂度和空间复杂度
 ## 1.1 时间复杂度
 一个算法的时间复杂度反映了程序运行从开始到结束所需要的时间。把算法中基本操作重复执行的次数，作为算法的时间复杂度。
@@ -107,6 +109,7 @@ var reverseList = function(head) {
 ```
 ### 2.4.4 复杂链表的复制
 输入一个复杂链表（每个节点中有节点值，以及两个指针，一个指向下一个节点，另一个特殊指针执行任意一个节点），返回结果为复制后复杂链表的head
+
 ### 2.4.5 合并两个排序的链表
 解题思路
 ![image](./images/two-head.png)
@@ -130,6 +133,136 @@ function merge(pHead1, pHead2) {
   return head
 }
 ```
+
+### 2.4.6 链表倒数第k个节点
+输入一个链表，输出该链表中倒数第k个节点
+```JavaScript
+// 1 2 3 4 5
+function findKthToTail(head, k) {
+  if (!head || !k) {
+    return null
+  }
+  let current = head
+  let result = head
+  let index = 1
+  while (current.next) {
+    index++
+    current = current.next
+    if (index > k) {
+      result = result.next
+    }
+  }
+  return (k <= index) && result
+}
+```
+
+### 2.4.7 链表中环的入口
+给一个链表，若其中包括环，请找出该链表的环的入口节点，否则，输出`null`
+解题思路：
+- 1. 先判读是否有环
+p1和p2开始从头出发，p1走两步，p2走一步，如果可以相遇则环存在
+- 2. 找出环的长度
+从环内某个节点开始计数，再回到此节点得到链表的长度length
+- 3. 找出公共的节点
+让p1、p2回到head节点，让p1先走length步（想当于p1想走了一个环的长度，剩余的长度和环外的长度相等），当p1和p2相遇时即为链表环的起点
+```JavaScript
+function entryNodeOfLoop (head) {
+  if (!head || !head.next) {
+    return null
+  }
+  // 1. 先判读是否有环
+  let p1 = head.next
+  let p2 = head.next.next
+  while (p1 !== p2) {
+    if (p2 == null || p2.next === null) {
+      return null
+    }
+    p1 = p1.next
+    p2 = p1.next.next
+  }
+  // 2. 找到长度
+  let temp = p1
+  let length = 1
+  p1 = p1.next
+  while (p1 !== temp) {
+    p1 = p1.next
+    length++
+  }
+
+  // 3. 找到节点
+  p1 = head
+  p2 = head
+  while (length-- > 0) {
+    p1 = p1.next
+  }
+  while (p1 !== p2) {
+    p1 = p1.next
+    p2 = p2.next
+  }
+  return p1
+}
+```
+### 2.4.8 两个链表的第一个公共节点
+输入两个链表，找出它们的公共节点
+![image](./images/2.png)
+
+思路：
+- 1. 找出两个链表的长度: `length1`、`length2`
+- 2. 让较长的两线先走length2 - length1步
+- 3. 然后两个两步同时前进知道找到相同的第一个节点
+```JavaScript
+/**
+ * Definition for singly-linked list.
+ * function ListNode(val) {
+ *     this.val = val;
+ *     this.next = null;
+ * }
+ */
+
+/**
+ * @param {ListNode} headA
+ * @param {ListNode} headB
+ * @return {ListNode}
+ */
+var getIntersectionNode = function(head1, head2) {
+    let length1 = getNodeLength(head1)
+    let length2 = getNodeLength(head2)
+    if (length1 > length2) {
+      head1 = nodeAdvanceStep(head1, length1 - length2)
+    } else {
+      head2 = nodeAdvanceStep(head2, length2 - length1)
+    }
+    while (head1 !== head2) {
+        head1 = head1.next
+        head2 = head2.next
+    }
+
+  return head1
+};
+
+function nodeAdvanceStep (head, step) {
+  if (!head) {
+    return null
+  }
+  console.log(head.val, step)
+  while (step-- > 0) {
+    head = head.next
+  }
+  return head
+}
+
+function getNodeLength (head) {
+  if (!head) {
+    return null
+  }
+  let length = 0
+  while (head) {
+    head = head.next
+    length++
+  }
+  return length
+}
+````
 ## 2.5 数据结构 - 数组
 ## 2.6 数据结构 - 栈和队列
 ## 2.7 数据结构 - 哈希表

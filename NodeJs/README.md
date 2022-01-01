@@ -53,3 +53,6 @@ setTimeout和setImmediate默认情况下执行是随机的，当放到readFile�
 ### 3.4 双工流 - Duplex
 
 ### 3.5 转换流 - Transform
+
+## 4 背压机制
+数据的消费速度跟不上数据的生产速度，从而导致内存溢出、GC频繁调用、其他进程变慢。
