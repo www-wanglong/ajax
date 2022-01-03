@@ -39,10 +39,17 @@ class MyFileReadStream extends EventEmitter {
       return this.once('open', this.read)
     }
     let buf = Buffer.alloc(this.highWaterMark)
-    fs.read(this.fd, buf, 0, this.highWaterMark, this.readOffset, (err, readBytes) => {
+    let howMuchToRead
+    if (this.end) {
+      howMuchToRead = Math.min(this.end - this.readOffset + 1, this.highWaterMark)
+    } else {
+      howMuchToRead = this.highWaterMark
+    }
+
+    fs.read(this.fd, buf, 0, howMuchToRead, this.readOffset, (err, readBytes) => {
       if (readBytes) {
         this.readOffset += readBytes
-        this.emit('data', buf)
+        this.emit('data', buf.slice(0, readBytes))
         this.read()
       } else {
         this.emit('end')
@@ -58,7 +65,10 @@ class MyFileReadStream extends EventEmitter {
   }
 }
 
-let rs = new MyFileReadStream('test.txt')
+let rs = new MyFileReadStream('test.txt', {
+  highWaterMark: 3,
+  end: 7,
+})
 
 rs.on('open', (fd) => {
   // fd数据存储的文件
