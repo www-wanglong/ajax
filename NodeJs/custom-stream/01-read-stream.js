@@ -90,3 +90,6 @@ rs.on('end', () => {
 rs.on('close', () => {
   console.log('close')
 })
+
+
+module.exports = MyFileReadStream
