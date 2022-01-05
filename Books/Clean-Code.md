@@ -84,6 +84,12 @@ Say what you mean.Mean what you say.
 # 3. 函数
 ## 3.1 短小
 ## 3.2 只做一件事
+
+函数应该做一件事。做好一件事。只做一件事。
+
+如果函数只是做了该函数名下**同一抽象层上**的步骤，则函数还是只做了一件事。
+
+所以，要判断函数是否不止做了一件事，就是要看是否能再拆出一个函数，该函数不仅只是单纯地诠释其实现。
 ```Java
 public static String testableHtml(PageData pageData, boolean includeSuiteSetup) throws Exception {
   WikiPage wikiPage = pageData.getWikiPage();
@@ -134,3 +140,33 @@ public static String testableHtml(PageData pageData, boolean includeSuiteSetup) 
   return pageData.getHtml();
 }
 ```
+
+> 重构之后的代码
+
+```Java
+public static String renderPageWith;
+SetupsAndTeardowns(
+        PageData pageData, boolean isSuite) throws Exception {
+    if (isTestPage(pageData))
+        includeSetupAndTeardownPages(pageData, isSuite);
+    return pageData.getHtml();
+}
+```
+
+## 3.3 每个函数一个抽象层级
+程序就像是一系列TO起头的段落，每一段都描述当前的抽象层级，并引用位于下一抽象层级的后续TO起头段落。
+
+- 要容纳设置和分拆步骤
+- 要...
+
+## 3.4 `switch`语句
+
+## 3.5 使用描述性的名称
+
+命名方式要保持一致。使用与模块名一脉相承的短语、名词和动词函数命名
+
+## 3.6 函数参数
+
+参数越少越好
+
+### 3.6.1 一元函数的普通形式

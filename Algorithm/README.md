@@ -110,6 +110,66 @@ var reverseList = function(head) {
 ### 2.4.4 复杂链表的复制
 输入一个复杂链表（每个节点中有节点值，以及两个指针，一个指向下一个节点，另一个特殊指针执行任意一个节点），返回结果为复制后复杂链表的head
 
+思路
+
+- 1. 复制一份链表放在前一个节点后面，即根据原始链表的每个节点N创建N，把N直接放在N的next位置，让复制后的链表和原始链表组成新的链表
+- 2. 给复制的链表randon复制，即N.random=N.random.next
+- 3. 拆分链表，将N`和N进行拆分，保证原始链表不受影响
+
+![image](./images/3.png)
+```JavaScript
+
+function clone(pHead) {
+  if (!pHead) {
+    return null
+  }
+  cloneNodes(pHead)
+  cloneRandom(pHead)
+  return reconnectNodes(pHead)
+}
+
+function cloneNodes(pHead) {
+  var current = pHead
+  while (current) {
+    var cloneNode = {
+      val: current.val,
+      next: current.next
+    }
+    current.next = cloneNode
+    current = cloneNode.next
+  }
+}
+
+function cloneRandom(pHead) {
+  var current = pHead
+  while(current) {
+    var cloneNode = current.next
+    if (current.random) {
+      cloneNode.random = current.random.next
+    } else {
+      cloneNode.random = null
+    }
+    current = cloneNode.next
+  }
+}
+
+function reconnectNodes(pHead) {
+  var cloneHead = pHead.next
+  var cloneNode = pHead.next
+  var current = pHead
+  while (current) {
+    current.next = cloneNode.next
+    current = cloneNode.next
+    if (current) {
+      cloneNode.next = current.next
+      cloneNode = current.next
+    } else {
+      cloneNode.next = null
+    }
+  }
+  return cloneHead
+}
+```
 ### 2.4.5 合并两个排序的链表
 解题思路
 ![image](./images/two-head.png)
@@ -262,9 +322,126 @@ function getNodeLength (head) {
   }
   return length
 }
-````
+```
 ### 2.4.9 圈圈中最后剩下的数字
+### 2.4.10 删除链表中的节点or重复的节点
+#### 2.4.10.1 删除链表中的节点
+
+- 1.删除的节点不是尾部节点 - 将next节点覆盖当前节点
+- 2.删除的节点是尾部节点且等于头部节点，只剩一个节点 - 将头部节点只为null
+- 3.删除的节点是尾节点且前面还有节点 - 遍历到未尾的前一个节点删除
+
+```JavaScript
+function deleteNode (head, node) {
+  if (node.next) {
+    node.val = node.next.val
+    node.next = node.next.next
+  } else if (node === head) {
+    head = null
+    node = null
+  } else {
+    node = head
+    while (node.next.next) {
+      node = node.next
+    }
+    node.next = null
+    node = null
+  }
+  return null
+}
+```
+#### 2.4.10.2 删除链表中重复节点
+方法1. 存储链表中元素出现的次数
+- 1. 用map存储每个节点出现的次数
+- 2. 删除出现次数大于1的节点
+
+方法2. 重新比较连接数组
+
+链表是排好顺序的，所以重复元素都会相邻
+- 1. 当前节点或当前节点的next为空，返回该节点
+```JavaScript
+var deleteDuplicates = function(head) {
+    if (!head || !head.next) {
+        return head
+    } else if (head.val === head.next.val) {
+        let nextNode = head.next
+        while (nextNode && nextNode.val === head.val) {
+            nextNode = nextNode.next
+        }
+        head.next = nextNode
+        deleteDuplicates(nextNode)
+        return head
+    } else {
+       head.next =  deleteDuplicates(head.next)
+       return head
+    }
+};
+```
+
 ## 2.5 数据结构 - 数组
+
+### 2.5.1 把数组排成最小的数
+输入一个正整数数组，把数组里所有数字拼接起来排成一个树，打印能拼接的所有数字中最小的一个。
+
+本质是重新定义数组排序的规则。
+```JavaScript
+function printMinNumber(numbers) {
+  if (!numbers || numbers.length == 0) {
+    return ''
+  }
+  return numbers.sort(compare).join('')
+}
+
+function compare(a ,b) {
+  const front = '' + a + b
+  const behind = '' + b + a
+  return front - behind
+}
+```
+
+### 2.5.2 第一个只出现一次的字符
+解法1：使用map记录出现的次数
+```JavaScript
+function firstNotRepeatingChar(str) {
+  if (!str) {
+    return -1
+  }
+  let countMap = {}
+  for (let i = 0; i < str.length; i++) {
+    if (countMap[str[i]]) {
+      countMap[str[i]] = ++countMap[str[i]]
+    } else {
+      countMap[str[i]] = 1
+    }
+  }
+  for (let i = 0; i < str.length; i++) {
+    if (countMap[str[i]] === 1) {
+      return str[i]
+    }
+  }
+  return -1
+}
+```
+
+### 2.5.3 调整数组顺序使奇数位于偶数前面  - 双指针实现
+- start遍历到偶数，end遍历到奇数是交换位置
+```JavaScript
+function reOrderArray (array) {
+  var start = 0
+  var end = arr.length -1
+  while (start > end) {
+    while (array[start] % 2 === 1) {
+      start++
+    }
+
+    while (array[start] % 2 === 0) {
+      end++
+    }
+    [array[start], array[end]] = [array[end], array[start]]
+
+  }
+}
+```
 ## 2.6 数据结构 - 栈和队列
 ## 2.7 数据结构 - 哈希表
 ## 2.8 数据结构 - 堆

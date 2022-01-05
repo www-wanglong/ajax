@@ -1,5 +1,5 @@
 # Nodejs
-## 1. base - Nodejs基础
+## 一. base - Nodejs基础
 
 ## CommonJs规范
 主要应用于NodeJs
@@ -56,3 +56,13 @@ setTimeout和setImmediate默认情况下执行是随机的，当放到readFile�
 
 ## 4 背压机制
 数据的消费速度跟不上数据的生产速度，从而导致内存溢出、GC频繁调用、其他进程变慢。
+
+## 二、通信
+
+### 1. TCP三次握手和四次挥手
+
+三次握手建立连接
+
+四次挥手 断开链接
+
+TCP协议
