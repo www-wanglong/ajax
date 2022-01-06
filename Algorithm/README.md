@@ -438,10 +438,36 @@ function reOrderArray (array) {
       end++
     }
     [array[start], array[end]] = [array[end], array[start]]
-
   }
+  return array
 }
 ```
+
+### 2.5.4 构建乘积数组
+给定一个数组A[0,1,...,n-1],请构建一个数组B[0,1,...,n-1],其中B中的元素B[i]=A[0]*A[1]*...*A[i-1]*A[i+1]*...*A[n-1]。不能使用除法。
+
+思路： b之前的数字乘 当前的a
+
+![image](./images/4.png)
+
+```JavaScript
+function  multiply(array) {
+  let result = []
+  result[0] = 1
+  for (let i = 1; i < array.length; i++) {
+    result[i] = result[i - 1] * array[i - 1]
+  }
+
+  let temp = 1
+  for (let i = array.length - 2; i >= 0; i--) {
+    temp = temp * array[i + 1]
+    result[i] = result[i] * temp
+  }
+  return result
+}
+```
+### 2.5.5 和为s的连续正整数序列
+
 ## 2.6 数据结构 - 栈和队列
 ## 2.7 数据结构 - 哈希表
 ## 2.8 数据结构 - 堆
