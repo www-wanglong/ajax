@@ -36,5 +36,10 @@ let version = require('../package.json').version
 
 program.version(version)
 
-program.parse(process.argv)
+let cmdConfig = program.parse(process.argv)
+
+
+let Server = require('../main.js')
+
+new Server(cmdConfig._optionValues).start()
 

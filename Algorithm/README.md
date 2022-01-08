@@ -469,6 +469,25 @@ function  multiply(array) {
 ### 2.5.5 和为s的连续正整数序列
 输入一个正数S，打印出所有和为S的连续正数序列
 
+### 2.5.6
+### 2.5.7 两数字和
+思路： 使用一个map将遍历过来的数字存起来，
+
+- 取map中查找是否有key为target-number[i]的值
+```JavaScript
+function towSum(arr, target) {
+  const map = {}
+  for (let i = 0;i < arr.length; i++) {
+    if (map[target- number[i]] !== undefined) {
+      return [map[target- number[i]], i]
+    } else {
+      map[arr[i]] = i
+    }
+  }
+  return []
+}
+```
+
 ## 2.6 数据结构 - 栈和队列
 ## 2.7 数据结构 - 哈希表
 ## 2.8 数据结构 - 堆
