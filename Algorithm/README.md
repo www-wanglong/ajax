@@ -466,19 +466,95 @@ function  multiply(array) {
   return result
 }
 ```
-### 2.5.5 和为s的连续正整数序列
-输入一个正数S，打印出所有和为S的连续正数序列
+### 2.5.5 和为s的连续正整数序列（双指针）
+输入一个正数S，打印出所有和为S的连续正数序列。
 
-### 2.5.6
-### 2.5.7 两数字和
+例如：输入15，有序1+2+3+4+5=4+5+6=7+8
+
+思路：
+- left从1开始， rigth从开始
+- 如果和小于目标值， right向右移动，
+- 如果和大于目标值， left向右移动，
+- 如果相等，记录结果，right和left同时向右移动
+```JavaScript
+function findContinuousSequence(target) {
+  let result = []
+  let left = 1
+  let right = 2
+  let sum = left + right
+  while (left <= target / 2) {
+    if (sum < target) {
+      sum += ++right
+    } else if (sum > target) {
+      sum -= left--
+    } else {
+      let child = []
+      for (let i = left; i <= right; i++) {
+        child.push(i)
+      }
+      result.push(child)
+      sum += ++right
+      sum -= left--
+    }
+  }
+  return result
+}
+```
+### 2.5.6 和为s的两个数字（双指针）
+输入一个递增排序的数组和一个数字s,在数组中查找两个数，使得他们的和正好是S，如果有多对数， 输出两个数乘积最小的
+
+```JavaScript
+function findNumbersWithSum(array, target) {
+  let left  = 0
+  let right = array.length - 1
+  while (left < right) {
+    let sum = array[i] + array[j]
+    if (target < sum) {
+      left++
+    } else if (target > sum) {
+      right--
+    } else {
+      return [array[i], array[j]]
+    }
+  }
+  return []
+}
+```
+
+### 2.5.7 连续子数组的最大和（动态规划）
+输入一个整型的数组，数组里有正数也有负数。数组中的一个或连续多个数组组成一个字数组，求所有子数组的和的最大值
+
+思路： 动态规划方法
+
+- 1. 先找到以nums[i]结尾的连续子数组的最大和
+- 2. 从中找出最大的那个
+```JavaScript
+function findSumOfSubArray(array) {
+  let sum = array[0]
+  let max = array[0]
+  for (let i = 1; i < array.length; i++) {
+    if (sum < 0) {
+      sum = array[i]
+    } else {
+      sum = sum + array[i]
+    }
+
+    if (sum > max) {
+      max = sum
+    }
+  }
+  return max
+}
+```
+### 2.5.8 两数之和
 思路： 使用一个map将遍历过来的数字存起来，
 
 - 取map中查找是否有key为target-number[i]的值
 ```JavaScript
 function towSum(arr, target) {
   const map = {}
-  for (let i = 0;i < arr.length; i++) {
-    if (map[target- number[i]] !== undefined) {
+  for (let i = 0; i < arr.length; i++) {
+    if (map[target - number[i]] !== undefined) {
       return [map[target- number[i]], i]
     } else {
       map[arr[i]] = i
@@ -487,6 +563,115 @@ function towSum(arr, target) {
   return []
 }
 ```
+做题的成就感使我着迷。
+### 2.5.9 扑克牌顺序
+扑克牌中随机抽5张牌，判断是不是一个顺子，大小王可以看成任何数字，也可以当0处理
+
+思路一：
+- 排序
+- 判读大小王的个数必须小于或等于间隔数
+```JavaScript
+var isStraight = function(nums) {
+  nums.sort((a,b) => a - b)
+  let kingMum = 0
+  let spaceNum = 0
+  for (let i = 0; i < nums.length - 1; i ++) {
+    if (nums[i] === 0) {
+      kingMum++
+    } else {
+      const space = nums[i+1] - nums[i]
+      if (space === 0) {
+          return false
+      } else {
+          spaceNum += space - 1
+          console.log('spaceNum', spaceNum)
+      }
+    }
+  }
+  return spaceNum <= kingMum
+};
+```
+
+思路二：
+- 最大数和最小数的间隔 < 5
+
+### 2.5.10 三数之和
+给定一个包含n个整数的数组nums,判断nums中是否存在三个元素a,b,c，使得`a+b+c=0?`找出所有满足条件且不重复的三元组
+
+思路：
+- 1. 先排序
+- 2. 遍历，取当前nums[i]为一个准基数，遍历后面的数组
+- 3. 设定两个起点，最左侧的left和right
+- 4. 判断是否等于0，如果大于0，则right向左移动，如果小于0，则left向右移动
+```JavaScript
+function threeSum(nums) {
+  const result = []
+  nums.sort((a, b) => a - b)
+  for (let i = 0; i < nums.length; i++) {
+    if (i && nums[i] === nums[i-1]) {
+      continue;
+    }
+    let left = i + 1
+    let right = nums.length - 1
+    while (left < right) {
+      const sum = nums[i] + nums[left] + nums[right]
+      if (sum > 0) {
+        right--
+      } else if (sum < 0) {
+        left++
+      } else {
+        result.push([nums[i], nums[left++], nums[right--]])
+        // 跳过重复的数字
+        while (nums[left] === nums[left - 1]) {
+          left++
+        }
+
+        while (nums[right] === nums[right + 1]) {
+          right--
+        }
+      }
+    }
+  }
+  return result
+}
+```
+
+### 2.5.11 数组中出现次数超过数组长度一般的数字
+数组中有一个数字出现的次数超过了数组长度的一半，找出这个数字。
+
+思路一：使用map统计出现次数，然后返回
+
+思路二：排序
+
+思路三：投票算法
+
+如果把众数记+1，把其他数记-1，将它们全部加起来，显然和大于0
+
+
+```JavaScript
+// 思路二：排序 取中间的值
+function findNum(array) {
+  array.sort((a, b) => a - b)
+  return array[Math.floor(array.length / 2)]
+}
+
+// 思路三：投票算法
+
+function findNum(array) {
+  let count = 0
+  let candidate = array[0]
+  for (let i = 0; i < array.length; i++) {
+    if (count === 0) {
+      candidate = array[i]
+    }
+    count += (array[i] === candidate) ? 1 : -1
+  }
+  return candidate
+}
+```
+
+### 2.5.12 数组中的逆序对
+
 
 ## 2.6 数据结构 - 栈和队列
 ## 2.7 数据结构 - 哈希表
