@@ -98,5 +98,9 @@ class Queue {
 
 
 const q = new Queue()
-
+q.enQueue(1)
+q.enQueue(2)
+q.enQueue(3)
+q.deQueue()
+console.log(q)
 module.exports = Queue
