@@ -5,11 +5,11 @@ function minDepth (root) {
     return 0
   }
   if (!root.left) {
-    return 1 + maxDepth(root.right)
+    return 1 + minDepth(root.right)
   }
 
   if (!root.right) {
-    return 1 + maxDepth(root.left)
+    return 1 + minDepth(root.left)
   }
   return Math.min(minDepth(root.left), minDepth(root.right)) + 1
 }
