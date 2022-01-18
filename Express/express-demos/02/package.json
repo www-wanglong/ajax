@@ -1,5 +1,5 @@
 {
-  "name": "todos",
+  "name": "01",
   "version": "1.0.0",
   "description": "",
   "main": "index.js",
@@ -10,7 +10,6 @@
   "author": "",
   "license": "ISC",
   "dependencies": {
-    "express": "^4.17.2",
-    "morgan": "^1.10.0"
+    "express": "^4.17.1"
   }
 }

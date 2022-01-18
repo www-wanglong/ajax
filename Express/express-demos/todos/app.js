@@ -1,105 +1,29 @@
 const express = require('express')
-const fs = require('fs')
-const { getDb, saveDb } = require('./db')
+const morgan = require('morgan')
+
+const router = require('./router')
 
 const app = express()
+app.use(morgan(':method :url :status :res[content-length] - :response-time ms'))
 
 // 配置解析表单解析体 application/json
 app.use(express.json())
 // application/x-www-form-urlencode
 //app.use(express.urlencoded())
 
-app.get('/todos', async (req, res) => {
-  try {
-    const db = await getDb()
-    res.status(200).json(db.todos)
-  } catch (err) {
-    res.status(500).json({
-      error: err.message
-    })
-  }
+app.use('/todos', router)
+
+// 404内容处理
+app.use((req, res, next) => {
+  res.status(404).send('404 Not Fount')
 })
 
-app.get('/todos/:id', async (req, res) => {
-  try {
-    const db = await getDb()
-    const todo = db.todos.find(todo => todo.id === Number.parseInt(req.params.id))
-    if (!todo) {
-      return res.status(404).end()
-    }
-
-    res.status(200).json(todo)
-  } catch (err) {
-    res.status(500).json({
-      error: err.message
-    })
-  }
-})
-
-app.post('/todos', async (req, res) => {
-  try {
-    const todo = req.body
-    if (!todo.title) {
-      return res.status(422).json({
-        error: 'The field title is required'
-      })
-    }
-
-    const db = await getDb()
-
-    const lastTodo = db.todos[db.todos.length - 1]
-    todo.id = lastTodo ? lastTodo.id + 1 : 1,
-    db.todos.push(todo)
-
-    await saveDb(db)
-
-    res.status(201).json(todo)
-  } catch(err) {
-    res.status(500).json({
-      error: err.message
-    })
-  }
-})
-
-app.patch('/todos/:id', async (req, res) => {
-  try {
-    const todo = req.body
-    const db = await getDb()
-    const ret = db.todos.find(todo => todo.id === Number.parseInt(req.params.id))
-    if (!ret) {
-      return res.status(404).end()
-    }
-
-    Object.assign(ret, todo)
-
-    await saveDb(db)
-    res.status(200).json(ret)
-
-  } catch (err) {
-    res.status(500).json({
-      error: err.message
-    })
-  }
-})
-
-app.delete('/todos/:id', async (req, res) => {
-  try {
-    const todoId = Number.parseInt(req.params.id)
-    const db = await getDb()
-    const todoIndex = db.todos.findIndex(todo => todo.id === todoId)
-    console.log(todoIndex)
-    if (todoIndex === -1) {
-      return res.status(404).end()
-    }
-    db.todos.splice(todoIndex, 1)
-    await saveDb(db)
-    res.status(204).end()
-
-  } catch (err) {
-    res.status(500).json({
-      error: err.message
-    })
-  }
+// 错误处理
+app.use((err, req, res, next) => {
+  console.log('error', err)
+  res.status(500).json({
+    error: err.message
+  })
 })
 
 
