@@ -5,16 +5,10 @@ const auth = require('../middleware/auth')
 
 const router = express.Router()
 
-// 注册
-router.post('/users', userValidator.register, userCtrl.register)
+router.get('/login', userCtrl.showLogin)
 
-// 登陆
-router.post('/users/login', userValidator.login, userCtrl.login)
+router.get('/register', userCtrl.showRegister)
 
-// 获取当前用户
-router.get('/user', auth, userCtrl.getCurrentUser)
-
-// 更新当前用户
-router.put('/user', auth, userCtrl.updateCurrentUser)
+router.post('/register', userValidator.register, userCtrl.register)
 
 module.exports = router
