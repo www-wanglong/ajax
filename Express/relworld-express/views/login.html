@@ -64,7 +64,8 @@
       methods: {
         async handleSubmit () {
           try {
-            const { data } = await axios.post('/register', {
+            const url = window.location.pathname === '/login' ? '/login' : '/register'
+            const { data } = await axios.post(url, {
               user: this.user
             })
             this.errors = []

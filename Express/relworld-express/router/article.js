@@ -6,10 +6,12 @@ const articleValidator = require('../validator/article')
 
 const router = express.Router()
 
-router.get('/', articleCtrl.getArticles)
+router.get('/', articleCtrl.showIndex)
 
-router.post('/', auth, articleValidator.createArticle, articleCtrl.createArticle)
+router.get('/editor', auth, articleCtrl.showEditor)
 
-router.put('/:articleId', articleValidator.updateArticle, articleCtrl.updateArticle)
+router.get('/editor/:articleId', auth, articleCtrl.showEditor)
+
+router.get('/article/:articleId', auth, articleCtrl.showArticle)
 
 module.exports = router
