@@ -3,8 +3,12 @@ const Koa = require('./koa')
 const app = new Koa()
 
 app.use((ctx, next) => {
-  console.log(ctx.req.path)
-  console.log(ctx.req.method)
+  ctx.body = 'hello koa12'
+  next()
+})
+
+app.use((ctx, next) => {
+  console.log(ctx.response.body)
 })
 
 // const one = (ctx, next) => {

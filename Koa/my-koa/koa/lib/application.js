@@ -62,7 +62,7 @@ class Application {
       // 每个请求都会创建
       const context = this.createContext(req, res)
       fnMiddleware(context).then(() => {
-        res.end('my koa')
+        res.end(context.body)
       }).catch((err) => {
         res.end(err.message)
       })
