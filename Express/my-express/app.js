@@ -3,24 +3,28 @@ const express = require('./express')
 const app = express()
 
 // 不验证请求方法
-app.use((req, res, next) => {
-  res.end('hello')
-})
+// app.use((req, res, next) => {
+//   console.log('hello1')
+//   next()
+// }, (req, res, next) => {
+//   console.log('hello2')
+//   res.end('h')
+// })
 
 // app.use('/foo', (req, res, next) => {
 //   res.end('hello')
 // })
 
-// app.get('/', (req, res, next) => {
-//   console.log('get 1')
-//   next()
-// }, (req, res, next) => {
-//   console.log('get 2')
-//   next()
-// }, (req, res, next) => {
-//   console.log('get 2')
-//   res.end('hello')
-// })
+app.get('/', (req, res, next) => {
+  console.log('get 1')
+  next()
+}, (req, res, next) => {
+  console.log('get 2')
+  next()
+}, (req, res, next) => {
+  console.log('get 2')
+  res.end('hello')
+})
 
 
 // app.get('/foo', (req, res, next) => {
@@ -63,7 +67,7 @@ app.use((req, res, next) => {
 //   res.end('post about')
 // })
 
-console.log(app._router)
+console.log(app._router.stack[0])
 
 app.listen(3000, () => {
   console.log(`Server running at http://localhost:3000/`)

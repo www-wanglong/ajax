@@ -5,7 +5,6 @@ const Route = require('./route')
 
 function Router () {
   this.stack = []
-
 }
 
 methods.forEach((method) => {
