@@ -139,7 +139,8 @@ class DemoKey extends TinyReact.Component {
 
   handleClick () {
     const newState = JSON.parse(JSON.stringify(this.state))
-    newState.persons.push(newState.persons.shift())
+    newState.persons.pop()
+
     this.setState(newState)
   }
 

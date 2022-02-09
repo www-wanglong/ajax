@@ -133,3 +133,7 @@ iterator.next() // { value: 5, done: false }
 iterator.next() // { value: undefined, done: true }
 ```
 ### 字符串也有Iterator
+
+# 22. Class基本语法
+## 22.1 简介
+ES6的``
