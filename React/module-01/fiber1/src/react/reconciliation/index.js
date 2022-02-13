@@ -1,7 +1,31 @@
-import { createTaskQueue } from '../misc'
+import {
+  arrified,
+  createTaskQueue,
+  createStateNode,
+  getTag
+} from '../misc'
 
 const taskQueue = createTaskQueue()
 let subTask = null
+
+let pendingCommit = null
+
+const commitAllWork = rootTiber => {
+  rootTiber.effects.forEach(item => {
+    if (item.effectTag === 'placement') {
+      let fiber = item
+      let parentFiber = item.parent
+      while (parentFiber.tag === 'class_component') {
+        parentFiber = parentFiber.parent
+      }
+
+      if (fiber.tag === 'host_component') {
+        parentFiber.stateNode.appendChild(fiber.stateNode)
+      }
+
+    }
+  })
+}
 
 /**
  * 获取任务
@@ -20,7 +44,69 @@ const getFirstTask = () => {
 
 }
 
+
+const reconcileChildren = (fiber, children) => {
+  // children可能是对象 也可能是数组
+  const arrifiedChildren = arrified(children)
+
+  let index = 0
+  let numberOfElements = arrifiedChildren.length
+
+  let vElement = null
+  let newFiber = null
+  let prevFiber = null
+
+  while (index < numberOfElements) {
+    vElement = arrifiedChildren[index]
+    newFiber = {
+      type: vElement.type,
+      props: vElement.props,
+      tag: getTag(vElement),
+      effects: [],
+      effectTag: 'placement',
+      parent: fiber,
+    }
+
+    newFiber.stateNode = createStateNode(newFiber)
+
+    if (index === 0) {
+      fiber.child = newFiber
+    } else {
+      prevFiber.sibling = newFiber
+    }
+
+    prevFiber = newFiber
+
+    index++
+  }
+}
 const executeTask = (fiber) => {
+
+  if (fiber.tag === 'class_component') {
+    reconcileChildren(fiber, fiber.stateNode.render())
+  } else {
+    reconcileChildren(fiber, fiber.props.children)
+  }
+
+
+  if (fiber.child) {
+    return fiber.child
+  }
+
+  let currentExecuteFiber = fiber
+
+  // 退回到父级
+  while (currentExecuteFiber.parent) {
+    currentExecuteFiber.parent.effects = currentExecuteFiber.parent.effects.concat(
+      currentExecuteFiber.effects.concat([currentExecuteFiber])
+    )
+    if (currentExecuteFiber.sibling) {
+      return currentExecuteFiber.sibling
+    }
+    currentExecuteFiber = currentExecuteFiber.parent
+  }
+
+  pendingCommit = currentExecuteFiber
 
 }
 
@@ -33,12 +119,16 @@ const workLoop = deadline => {
   if (!subTask) {
     subTask = getFirstTask()
   }
-  console.log('subTask', subTask)
 
   // 如果任务存在
   while (subTask && deadline.timeRemaining() > 1) {
     // 执行任务
     subTask = executeTask(subTask)
+  }
+
+  // 第二阶段
+  if (pendingCommit) {
+    commitAllWork(pendingCommit)
   }
 }
 
