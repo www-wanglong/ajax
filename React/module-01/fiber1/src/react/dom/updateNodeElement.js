@@ -6,6 +6,23 @@ export default function updateNodeElement (
   const newProps = virtualDOM.props || {}
   const oldProps = oldVirtualDOM.props || {}
 
+  if (virtualDOM.type === 'text') {
+    if (oldProps.textContent !== newProps.textContent) {
+
+      if (virtualDOM.parent.type !== oldVirtualDOM.parent.type) {
+        virtualDOM.parent.stateNode.appendChild(
+          document.createTextNode(newProps.textContent)
+        )
+      } else {
+        virtualDOM.parent.stateNode.replaceChild(
+          document.createTextNode(newProps.textContent),
+          oldVirtualDOM.stateNode
+        )
+      }
+    }
+    return
+  }
+
   Object.keys(newProps).forEach((propName) => {
     const newPropValue = newProps[propName]
     const oldPropsValue = oldProps[propName]
