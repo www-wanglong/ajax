@@ -6,47 +6,50 @@
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
   <title>双飞翼布局</title>
   <style type="text/css">
+
+    /*
+      1. flex布局
+      2. 两侧使用margin负值，left:-100%;right: -200px;
+      3. 中间容器里面的容器使用 margin： 0 200px；留出左右空白
+    */
     .container {
-      position: relative;
       height: 200px;
-      overflow: auto;
-    }
-
-    .container div {
-      float: left;
-    }
-
-    .middle-wrap {
-      background-color: red;
-      height: 100%;
-      width: 100%;
     }
 
     .middle {
+      background-color: red;
+      height: 100%;
+      width: 100%;
+      float: left;
+    }
+
+
+    .middle-inner {
       margin: 0 200px;
+      height: 100%;
     }
 
     .left {
+      float: left;
       height: 100%;
       width: 200px;
       background-color: lightblue;
       margin-left: -100%;
-      position: relative;
     }
 
     .right {
+      float: left;
       height: 100%;
       width: 200px;
       background-color: lightgreen;
       margin-left: -200px;
-      position: relative;
     }
   </style>
 </head>
 <body>
   <div class="container">
-    <div class="middle-wrap">
-      <div class="middle">middle</div>
+    <div class="middle">
+      <div class="middle-inner">middle</div>
     </div>
     <div class="left">left</div>
     <div class="right">right</div>

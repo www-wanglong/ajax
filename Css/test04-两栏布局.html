@@ -1,0 +1,56 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta http-equiv="X-UA-Compatible" content="IE=edge">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>两栏布局</title>
+  <style type="text/css">
+    /* 1. 利用浮动：左边左浮动固定宽度，右边margin-left,宽度自动撑满
+    2. 利用同样浮动，左边元素固定，右边overflow:hidden; 这样右边旧触发了BFC
+    3. flex布局
+    4. 利用绝对定位：左边固定宽度left: 0，右边margin-left
+    5. 利用绝对定位：右边left:200px */
+
+    /* .outer {
+      height: 100px;
+    }
+
+    .left {
+      height: 100%;
+      float: left;
+      width: 200px;
+      background-color: lightblue;
+    }
+
+    .right {
+      margin-left: 200px;
+      height: 100%;
+      background-color: lightgreen;
+    } */
+
+    .outer {
+      height: 100px;
+      position: relative;
+    }
+
+    .left {
+      position: absolute;
+      width: 200px;
+      height: 100%;
+      background-color: lightblue;
+    }
+    .right {
+      margin-left: 200px;
+      height: 100%;
+    }
+  </style>
+</head>
+<body>
+  <div class="outer">
+    <div class="left">left</div>
+    <div class="right">right</div>
+  </div>
+
+</body>
+</html>

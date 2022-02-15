@@ -1,0 +1,31 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta http-equiv="X-UA-Compatible" content="IE=edge">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>垂直居中</title>
+  <style>
+    /* 1. 绝对定位(未知宽度) left:50%,top:50%; transform:translate(-50%, -50%)
+       2. 固定宽高：绝对定位，子元素所有方向都为 0,margin:auto;
+       3. 固定宽高：绝对定位 left:50%,top:50%;margin-left:自己一半；margin-top:自己一半
+       4. flex
+    */
+    .father {
+      width: 500px;
+      height: 500px;
+      background-color: red;
+      position: relative;
+    }
+    .son {
+      position: absolute;
+      margin: auto;
+    }
+  </style>
+</head>
+<body>
+  <div class="father">
+    <div class="son">xx</div>
+  </div>
+</body>
+</html>

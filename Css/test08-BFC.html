@@ -1,0 +1,47 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta http-equiv="X-UA-Compatible" content="IE=edge">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>BFC</title>
+</head>
+
+<style>
+  .item {
+    width: 100px;
+    height: 100px;
+    background-color: lightblue;
+    margin: 100px;
+  }
+</style>
+<body>
+  BFC特性的元素可以看作是隔离了的独立容器，容器里面的元素不会再布局上影响到外面的元素
+  ，并且BFC具有普通容器没有的一些特征。
+  触发BFC特性
+  1. body根元素
+  2. 浮动元素：float除none以外的值
+  3. 绝对定位元素：position(absolute、fixed)
+  4. overflow除了visible以外的值(hidden、auto、scroll)
+  5. display 为 inline-block、table-cells、flex
+
+  BFC的应用
+  1. 同一个BFC下外边距会发生折叠
+  2. BFC可以包含浮动元素（清除浮动）
+  3. BFC可以阻止元素被浮动元素覆盖
+
+  <p>
+    <div class="item"></div>
+    <div class="item"></div>
+  </p>
+
+  <div style="border: 1px solid #000;overflow: hidden;">
+    <div style="width:100px;height: 100px;background: #eee;float: left"></div>
+  </div>
+
+  <div style="height: 100px;width: 100px;float: left;background: lightblue">我是一个左浮动的元素</div>
+  <div style="width: 200px; height: 200px;background: #eee">我是一个没有设置浮动,
+也没有触发 BFC 元素, width: 200px; height:200px; background: #eee;</div>
+
+</body>
+</html>
