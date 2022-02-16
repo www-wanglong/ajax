@@ -84,8 +84,9 @@ function throttle (fn, wait) {
 - 有利于搜索引擎优化（SEO）
 
 <!-- 面试官下午好 我叫王龙，今天很高心。
-我从事前端开发3年多，使用过angular、react、vue开发过项目
-有过两段工作经历，写过后端，做个一些h5项目、pc管理系统、微信小程序、app端项目。
+我从事前端开发3年多，有过两段工作经历，写过后端，
+使用过angular、react、vue开发过项目
+做个一些h5项目、pc管理系统、微信小程序、app端项目。
 
 平时喜欢逛一些技术想去，比如:github、csdn之类的，看到一些比较好的技术或项目。也会练习练习，记录自己的学习心得。
 
@@ -96,6 +97,7 @@ function throttle (fn, wait) {
 ### 6.1 新的选择器
 - nth-child(n)
 - first-child
+
 ### 6.2 文本
 - text-overflow：文本溢出时
 - text-wrap：规定文本换行的规则

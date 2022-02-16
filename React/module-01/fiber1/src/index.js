@@ -16,7 +16,7 @@ const jsx1  = (
   </div>
 )
 
-// render(jsx, root)
+render(jsx, root)
 
 // setTimeout(() => {
 //   render(jsx1, root)
@@ -44,4 +44,4 @@ function FnComponent(props) {
   return <div>{props.title}FnComponent</div>
 }
 
-render(<Greeting />, root)
+// render(<Greeting />, root)
