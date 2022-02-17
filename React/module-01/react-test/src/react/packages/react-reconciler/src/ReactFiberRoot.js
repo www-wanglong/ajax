@@ -141,7 +141,7 @@ export function createFiberRoot(
   hydrationCallbacks: null | SuspenseHydrationCallbacks,
 ): FiberRoot {
   // 创建 FiberRoot
-  console.log('createContainer')
+
   const root: FiberRoot = (new FiberRootNode(containerInfo, tag, hydrate): any);
   // false
   if (enableSuspenseCallback) {
