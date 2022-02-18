@@ -1,0 +1,52 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta http-equiv="X-UA-Compatible" content="IE=edge">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>盒模型</title>
+
+  <style media="screen">
+    * {
+        margin: 0;
+        padding: 0;
+    }
+
+    #sec {
+        background: #f00;
+    }
+    .child {
+        height: 100px;
+        margin-top: 10px;
+        background: yellow;
+    }
+
+    * {
+                padding: 0;
+                margin: 0;
+            }
+            #margin {
+                background: pink;
+                overflow: hidden;
+            }
+            p {
+                margin: 15px auto 25px;
+                background: red;
+            }
+</style>
+</head>
+<body>
+  <div>盒模型</div>
+  <section id="sec">
+    <article class="child"></article>
+</section>
+
+<p>1</p>
+<div style="overflow: hidden">
+    <p>2</p>
+</div>
+<p>3</p>
+<p>4</p>
+
+</body>
+</html>

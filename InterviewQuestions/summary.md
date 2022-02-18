@@ -277,28 +277,7 @@ render函数:
 - 1. 包装原组件，将`state`和`action`通过`props`的方式传入到原组件内部。
 - 2. 监听`store tree`的变化，使其包装的原组件可以响应`state`变化
 
-## 22 编程算法题
-> 用 JavaScript 写一个函数，输入 int 型，返回整数逆序后的字符串。如：输入整型 1234，返回字符串“4321”。要求必须使用递归函数调用，不能用全局变量，输入函数必须只有一个参数传入，必须返回字符串。
-```JavaScript
-function reverseNumberToString (number) {
-  let str = number.toString()
-  if (str.length === 1) {
-    return str
-  }
-  return reverseNumberToString(str.substring(1)) + str.substring(0,1)
 
-}
-function reverseNumberToString (number) {
-  let num1 = number / 10
-  let num2 = number % 10
-  if (num1 < 1) {
-    return number
-  }
-  return `${num2}${reverseNumberToString(Math.floor(num1))}`
-}
-
-
-```
 
 ## 23 你在项目中做了啥？
 
