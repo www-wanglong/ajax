@@ -1,5 +1,6 @@
 <!DOCTYPE html>
 <html lang="en">
+
 <head>
   <meta charset="UTF-8">
   <meta http-equiv="X-UA-Compatible" content="IE=edge">
@@ -8,45 +9,114 @@
 
   <style media="screen">
     * {
-        margin: 0;
-        padding: 0;
+      margin: 0;
+      padding: 0;
     }
 
     #sec {
-        background: #f00;
+      background: #f00;
     }
+
     .child {
-        height: 100px;
-        margin-top: 10px;
-        background: yellow;
+      height: 100px;
+      margin-top: 10px;
+      background: yellow;
     }
 
     * {
-                padding: 0;
-                margin: 0;
-            }
-            #margin {
-                background: pink;
-                overflow: hidden;
-            }
-            p {
-                margin: 15px auto 25px;
-                background: red;
-            }
-</style>
+      padding: 0;
+      margin: 0;
+    }
+
+    #margin {
+      background: pink;
+      overflow: hidden;
+    }
+
+    p {
+      margin: 15px auto 25px;
+      background: red;
+    }
+
+    .flex-wrap {
+      display: flex;
+      height: 500px;
+    }
+    .flex-item {
+      height: 200px;
+      width: 200px;
+      background-color: red;
+    }
+
+    .news {
+      background-color: gray;
+      border: solid 1px black;
+      float: left;
+    }
+
+    .news img {
+      float: left;
+    }
+
+    .news p {
+      float: right;
+    }
+    .border {
+  border: 2px solid;
+}
+
+.common-div {
+  width: 160px;
+  height: 50px;
+  background-color: red;
+}
+
+.float-red {
+  width: 100px;
+  height: 50px;
+  background-color: #fcc;
+  float: left;
+}
+
+.float-blue {
+  width: 100px;
+  height: 50px;
+  background-color: #09c;
+  float: left;
+}
+  </style>
 </head>
+
 <body>
+  <div class="border">
+      <div class="float-red"></div>
+      <div class="common-div"></div>
+      <div class="float-blue"></div>
+      Lorem ipsum dolor sit amet, consectetur adipisicing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat. Duis aute irure dolor in reprehenderit in voluptate velit esse cillum dolore eu fugiat nulla pariatur. Excepteur sint occaecat cupidatat non proident, sunt in culpa qui officia deserunt mollit anim id est laborum.
+  </div>
   <div>盒模型</div>
   <section id="sec">
     <article class="child"></article>
-</section>
+  </section>
 
-<p>1</p>
-<div style="overflow: hidden">
+  <p>1</p>
+  <div style="overflow: hidden">
     <p>2</p>
-</div>
-<p>3</p>
-<p>4</p>
+  </div>
+  <p>3</p>
+  <p>4</p>
+
+  <div class="flex-wrap">
+    <div class="flex-item"></div>
+    <div class="flex-item"></div>
+  </div>
+
+  <div class="news">
+    <img src="news-pic.jpg" />
+    <p>some text</p>
+
+  </div>
 
 </body>
+
 </html>
