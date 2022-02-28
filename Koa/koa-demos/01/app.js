@@ -8,28 +8,17 @@ const path = require('path')
 const mount = require('koa-mount')
 
 const app = new Koa()
-const router = new Router()
 
-app.use(
-  mount('/public', static(path.join(__dirname,  './public')))
-)
 
-router.get('/', (ctx, next) => {
-  ctx.body = 'get'
+app.use(async (ctx, next) => {
+  console.log(ctx.path)
+  if (ctx.path === '/api/jsonp') {
+    const { cb, msg } = ctx.query
+    ctx.body = `${cb}(${JSON.stringify({ msg })})`
+    return
+  }
 })
 
-router.get('/foo', (ctx, next) => {
-  ctx.body = 'foo'
-})
-
-router.get('/bar', (ctx) => {
-  // 重定向针对同步请求
-  ctx.redirect('/foo')
-})
-
-app
-  .use(router.routes())
-  .use(router.allowedMethods())
 
 app.listen(3000, () => {
   console.log('http://localhost:3000')

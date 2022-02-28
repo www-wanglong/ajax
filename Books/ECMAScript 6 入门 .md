@@ -134,6 +134,16 @@ iterator.next() // { value: undefined, done: true }
 ```
 ### 字符串也有Iterator
 
+# 21. async 函数
+## 21.1 含义
+就是Generator函数的语法糖。
+
+`async`函数对`Generator`函数的改进，体现在以下四点
+- 内置执行器
+- 更好的语法
+- 更广的适用性
+- 返回Promise
+
 # 22. Class基本语法
 ## 22.1 简介
 ES6的``
