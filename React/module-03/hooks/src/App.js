@@ -12,7 +12,6 @@ import React, {
 import ReactDOM from 'react-dom'
 import axios from 'axios'
 
-const countContext = createContext()
 
 // 1. useState使用
 function App1 (props) {
@@ -69,6 +68,7 @@ function App2() {
 }
 
 // 3. useContext
+const countContext = createContext()
 function App3() {
   return <countContext.Provider value={100}>
     <Foo />
