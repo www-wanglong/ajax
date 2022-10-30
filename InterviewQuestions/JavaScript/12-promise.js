@@ -29,3 +29,11 @@ async function a1() {
 
 a1()
 
+function getRandom() {
+
+}
+
+function getRandomNumber() {
+  return Math.floor(Math.random() * 32 + 2)
+}
+

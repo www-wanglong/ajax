@@ -1,10 +1,12 @@
 # 1. react setState是同步还是异步？
+
 # 2. 父子组件之间的通信方式
+
 ## 2.1 父向子 使用`props`
 ## 2.2 子向父 使用props`传递回调函数`
 ## 2.3 跨级嵌套组件 使用`context`
 ## 2.4 使用事件订阅
-## 2.5 redux
+
 # 3. useState、useCallback、useMemo、memo
 ## 3.1 useState保存状态（采用闭包实现）
 setCount异步的

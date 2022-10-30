@@ -204,3 +204,7 @@ Object.getOwnPropertyNames( myObject ); // a b
 
 enumerable不会出现在for...in循环中。（尽管in操作符来判断是否存在）。
 ## 3.4 遍历
+
+# 5. 原型
+[[Prototype]]机制就是指对象中的一个外部链接引用另一个对象。
+如果在第一个对象上没有找到需要的属性或者方法引用，引擎就会继续在[[Prototype]]关联的对象上进行查找。

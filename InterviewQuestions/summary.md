@@ -1,6 +1,19 @@
 # 前端面试题
 > https://github.com/Advanced-Frontend/Daily-Interview-Question/blob/master/datum/summary.md
 
+<!--
+  面试官下午好 我叫王龙。18年毕业。
+我从事前端开发块4年，有过两段工作经历，写过后端，
+使用过angular、react技术栈，
+做个一些h5项目、pc管理系统、微信小程序、app端项目。
+
+平时喜欢逛一些技术想去，比如:github、csdn之类的，
+看到一些比较好的技术或项目。也会练习练习，记录自己的学习心得。
+
+平时开发时比较喜欢全心全意的投入开发，对代码有极高的要求。
+-->
+
+
 ## 1. 写React/Vue项目时为什么要在列表组件中写可以，其作用是什么？
 > key是给每一个vnode的唯一id,可以依靠key,`更准确`、`更快`的拿到oldVnode中对应的vnode节点。
 ### 1.1 更准确
@@ -15,10 +28,15 @@
 
 parseInt第一个参数是数组，第二个参数要转换的进制
 
+
 ## 3. 什么是防抖？什么是节流？有什么区别？如何实现
+
 ### 3.1 防抖
+
 > 对于高频的操作，只识别一次点击
+
 - 思路：每次触发事件时都取消之前的延时调用方法
+
 ```JavaScript
  /**  防抖函数 */
  function debounce (fn, wait) {
@@ -31,6 +49,7 @@ parseInt第一个参数是数组，第二个参数要转换的进制
    }
  }
 ```
+
 ### 3.2 节流
 > 高频事件触发，可以设置频率。
 - 思路：每次触发事件时都判断是否有等待执行的延时函数
@@ -82,20 +101,6 @@ function throttle (fn, wait) {
 - 代码结构清晰，易于阅读，利于开发和维护
 - 方便其他设备解析根据语义渲染网页
 - 有利于搜索引擎优化（SEO）
-
-<!--
-  面试官下午好 我叫王龙。18年毕业。
-我从事前端开发3年多，有过两段工作经历，写过后端，
-使用过angular、react、vue开发过项目
-做个一些h5项目、pc管理系统、微信小程序、app端项目。
-
-平时喜欢逛一些技术想去，比如:github、csdn之类的，
-看到一些比较好的技术或项目。也会练习练习，记录自己的学习心得。
-
-我的性格比较温和，
-平时开发时比较喜欢全心全意的投入开发是，对代码有极高的要求。
-
--->
 
 ## 7. 浏览器渲染机制、重绘、重排
 ### 7.1 网页生成的过程
@@ -218,7 +223,6 @@ render函数:
 
 ### 19.2 更新
 - componentWillReceiveProps(nextProps)
-
 - shouldComponentUpdate(nextProps,nextState)
  1. 主要用于性能优化（部分更新）
  2. 唯一用于控制组件重新渲染的生命周期 return false
@@ -270,3 +274,29 @@ render函数:
 3. get请求长度限制
 4. get参数放在url中不安全
 5. get可以直接使用浏览器访问
+
+
+```JavaScript
+// 数字数组122
+function getNumbers(num) {
+	let arr = []
+	for(let i = 1; i <= num; i++) {
+		arr.push(i)
+	}
+	return randomArray(arr)
+}
+
+function randomArray(arr) {
+	let newArr = []
+	let length = arr.length
+	while (length > 0) {
+	  let index = Math.floor(Math.random() * length)
+	  newArr.push(arr[index])
+	  arr.splice(index,1)
+	  length = arr.length
+    }
+  return newArr
+}
+
+console.log(getNumbers(4))
+```

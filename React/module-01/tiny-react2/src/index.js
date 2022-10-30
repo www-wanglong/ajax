@@ -18,6 +18,7 @@ const virtualDOM = (
   </div>
 )
 
+console.log('virtualDOM', virtualDOM)
 const modifyDOM = (
   <div className="container">
     <h1>你好 Tiny React</h1>
@@ -40,7 +41,7 @@ const root = document.getElementById('root')
 // setTimeout(() => {
 //   TinyReact.render(modifyDOM, root)
 // }, 2000)
-// TinyReact.render(virtualDOM, root)
+TinyReact.render(virtualDOM, root)
 class Alert extends TinyReact.Component {
 
   constructor (props) {
@@ -160,7 +161,7 @@ class DemoKey extends TinyReact.Component {
   }
 }
 
-TinyReact.render(<DemoKey />, root)
+// TinyReact.render(<DemoKey />, root)
 
 // setTimeout(() => {
 //   TinyReact.render(<Alert name="李四" age="20" />, root)

@@ -1,0 +1,74 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta http-equiv="X-UA-Compatible" content="IE=edge">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Document</title>
+</head>
+<body>
+  <input type="checkbox" id="my-box" />
+  <script>
+    document.getElementById('my-box').addEventListener(
+      'click',
+      function (e) {
+
+      },
+      false
+    )
+    // var ev = new Event(
+    //   'look',
+    //   {
+    //     bubbles: true,
+    //     cancelable: false
+    //   }
+    // )
+    // var div = document.querySelector('div');
+    // var p = document.querySelector('p');
+
+    // function callback(event) {
+    //   var tag = event.target.tagName;
+    //   var ctag = event.currentTarget.tagName;
+    //   console.log('currentTarget: ' + ctag, 'target', ); // 没有任何输出
+    // }
+
+    // div.addEventListener('click', callback, false)
+    // p.addEventListener('click', callback, false)
+    // var click = new Event('click')
+    // p.dispatchEvent(click)
+    // var phases = {
+    //   1: 'capture',
+    //   2: 'target',
+    //   3: 'bubble'
+    // }
+    // var div = document.querySelector('div')
+    // var p = document.querySelector('p')
+    // div.addEventListener('click', callback, true);
+    // // p.addEventListener('click', callback, true);
+    // // div.addEventListener('click', callback, false);
+    // // p.addEventListener('click', callback, false);
+
+    // function callback(event) {
+    //   var tag = event.currentTarget.tagName;
+    //   var phase = phases[event.eventPhase];
+    //   console.log("Tag: '" + tag + "'. EventPhase: '" + phase + "'");
+    // }
+    // btn.onclick = function () {
+    //   console.log('click', this)
+    // }
+    // function hello()  {
+    //   console.log('hello')
+    // }
+    // var btn = document.getElementById('btn')
+    // btn.addEventListener('click', hello, false)
+    // btn.addEventListener('click', hello, true)
+    // btn.addEventListener('click', {
+    //   handleEvent: function (event) {
+    //     console.log('event', event)
+    //   }
+    // })
+    // var event = new Event('click')
+    // btn.dispatchEvent(event)
+  </script>
+</body>
+</html>
