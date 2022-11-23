@@ -1,11 +1,19 @@
 const express = require('express')
 const { ApolloServer, gql } = require('apollo-server-express')
 const schema = require('./schema')
+const dataSources = require('./data-sources')
 
 const app = express()
 
 const server = new ApolloServer({
-  schema
+  schema,
+  dataSources,
+  context ({ req }) {
+    const token = req.headers.authorization
+    return {
+      token
+    }
+  },
 })
 
 server.applyMiddleware({ app })
