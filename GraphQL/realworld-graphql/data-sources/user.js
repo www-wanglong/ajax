@@ -1,6 +1,14 @@
 const { MongoDataSource } = require('apollo-datasource-mongodb')
 
 class Users extends MongoDataSource {
+  findBy () {
+    return this.model.find()
+  }
+
+  count (email) {
+    return this.model.countDocuments()
+  }
+
   findByEmail (email) {
     return this.model.findOne({
       email

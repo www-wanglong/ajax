@@ -12,13 +12,20 @@ const typeDefs = gql`
     token: String
   }
 
+
   type UserPayload {
     user: User!
   }
 
+  type UsersPayload {
+    users: [User!]
+    count: Int!
+  }
+
   type Query {
     foo: String @auth
-    currentUser: User
+    currentUser: User @auth
+    users: UsersPayload
   }
 
   input LoginInput {
@@ -30,6 +37,14 @@ const typeDefs = gql`
     username: String!
     email: String!
     password: String!
+  }
+
+  input UpdateUserInput {
+    username: String
+    email: String
+    password: String
+    bio: String
+    image: String
   }
 
   type Mutation {
