@@ -1,22 +1,23 @@
 <template>
-	<view>
-		<text>list</text>
-	</view>
+  <view>
+    <text>list</text>
+    <text>{{ username }}</text>
+  </view>
 </template>
 
 <script>
-	export default {
-		data() {
-			return {
-				
-			}
-		},
-		methods: {
-			
-		}
-	}
+import { mapState, mapActions } from "vuex";
+export default {
+  data() {
+    return {};
+  },
+  computed: {
+    ...mapState(["username"]),
+  },
+  methods: {
+    ...mapActions(["login", "logout"]),
+  },
+};
 </script>
 
-<style>
-
-</style>
+<style></style>
